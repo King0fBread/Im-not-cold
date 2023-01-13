@@ -9,6 +9,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _runningSpeed;
     private Rigidbody _playerRigidbody;
     private Vector2 _inputVector;
+    private Vector3 _moveDirection;
+    [Header("Rotation")]
+    [SerializeField] private Transform _cameraTransform;
+    [SerializeField] private Transform _orientationObjectTransform;
+    private float _rotationX;
+    private float _rotationY;
+    private float _mouseRotationAlongX;
+    private float _mouseRotationAlongY;
+    //make sensitivity public eventually
+    private float _rotationSensitivityX = 100f;
+    private float _rotationSensitivityY = 100f;
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
@@ -20,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Move();
+        RotateCamera();
     }
     private void Jump(InputAction.CallbackContext context)
     {
@@ -28,6 +40,17 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         _inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
-        _playerRigidbody.AddForce(new Vector3(_inputVector.x, 0, _inputVector.y).normalized * _walkingSpeed * Time.deltaTime, ForceMode.Force);
+        _moveDirection = _orientationObjectTransform.forward * _inputVector.y + _orientationObjectTransform.right * _inputVector.x;
+        _playerRigidbody.AddForce(_moveDirection.normalized * _walkingSpeed * Time.deltaTime, ForceMode.Force);
+    }
+    private void RotateCamera()
+    {
+        _mouseRotationAlongX = Input.GetAxis("Mouse X");
+        _mouseRotationAlongY = Input.GetAxis("Mouse Y");
+        _rotationX -= _mouseRotationAlongY;
+        _rotationY += _mouseRotationAlongX;
+        _rotationX = Mathf.Clamp(_rotationX, -80f, 80f);
+        _orientationObjectTransform.rotation = Quaternion.Euler(0f, _rotationY, 0f);
+        _cameraTransform.rotation = Quaternion.Euler(_rotationX, _rotationY, 0f);
     }
 }
