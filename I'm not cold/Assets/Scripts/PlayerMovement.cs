@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _playerRigidbody;
     private Vector2 _inputVector;
     private Vector3 _moveDirection;
+    private bool _isRunning;
     [Header("Rotation")]
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private Transform _orientationObjectTransform;
@@ -41,9 +42,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
+        _isRunning = Input.GetKey(KeyCode.LeftShift);
         _inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
         _moveDirection = _orientationObjectTransform.forward * _inputVector.y + _orientationObjectTransform.right * _inputVector.x;
-        _playerRigidbody.AddForce(_moveDirection.normalized * _walkingSpeed * Time.deltaTime, ForceMode.Force);
+        if (_isRunning)
+        {
+            _playerRigidbody.AddForce(_moveDirection.normalized * _runningSpeed * Time.deltaTime, ForceMode.Force);
+        }
+        else
+        {
+            _playerRigidbody.AddForce(_moveDirection.normalized * _walkingSpeed * Time.deltaTime, ForceMode.Force);
+        }
     }
     private void RotateCamera()
     {
