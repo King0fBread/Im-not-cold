@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     //make sensitivity public eventually
     private float _rotationSensitivityX = 100f;
     private float _rotationSensitivityY = 100f;
+    [Header("Jumping")]
+    [SerializeField] private float _jumpStrength;
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext context)
     {
-
+        _playerRigidbody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
     }
     private void Move()
     {
