@@ -6,7 +6,7 @@ public class GrabableObject : MonoBehaviour
 {
     private Rigidbody _thisRigidbody;
     private Transform _objectCarryingTransform;
-    private float _lerpingToNewPositionSpeed = 10f;
+    private float _lerpingToNewPositionSpeed = 20f;
     private void Awake()
     {
         _thisRigidbody = GetComponent<Rigidbody>();
@@ -15,11 +15,14 @@ public class GrabableObject : MonoBehaviour
     {
         _objectCarryingTransform = objectCarryingTransform;
         _thisRigidbody.useGravity = false;
+        _thisRigidbody.freezeRotation = true;
+        transform.rotation = Quaternion.identity;
     }
     public void Drop()
     {
         _objectCarryingTransform = null;
         _thisRigidbody.useGravity = true;
+        _thisRigidbody.freezeRotation = false;
     }
     private void Update()
     {
@@ -27,6 +30,5 @@ public class GrabableObject : MonoBehaviour
 
         Vector3 newObjectPosition = Vector3.Lerp(transform.position, _objectCarryingTransform.position, Time.deltaTime * _lerpingToNewPositionSpeed);
         _thisRigidbody.MovePosition(newObjectPosition);
-        //Physics.IgnoreCollision(_thisRigidbody)
     }
 }
