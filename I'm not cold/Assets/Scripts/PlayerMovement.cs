@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float _rotationSensitivityY = 100f;
     [Header("Jumping")]
     [SerializeField] private float _jumpStrength;
+    public bool _isGrounded { get; set; }
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
@@ -38,7 +39,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext context)
     {
-        _playerRigidbody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
+        if (_isGrounded)
+        {
+            _playerRigidbody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
+        }
     }
     private void Move()
     {
