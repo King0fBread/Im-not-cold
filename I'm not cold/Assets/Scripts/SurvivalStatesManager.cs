@@ -12,13 +12,15 @@ public class SurvivalStatesManager : MonoBehaviour
     [SerializeField] private float _heatPassiveDecreasingInsideRate;
     [SerializeField] private float _heatPassiveDecreasingOutsideRate;
     [SerializeField] private float _heatPassiveIncreasingRate;
-    private bool _isPlayerInside = false;
+    public bool _isPlayerInside { get; set; }
     [Header("Energy Values")]
     [SerializeField] private float _energyPassiveDecreasingWalkingRate;
     [SerializeField] private float _enegryPassiveDecreasingRunningRate;
     [SerializeField] private float _energyInstantDecreasingJumpingRate;
     [SerializeField] private float _energyInstantIncreasingRate;
-    private bool _isPlayerRunning;
+    public bool isPlayerIdle { get; set; }
+    public bool isPlayerRunning { get; set; }
+    public bool playerHasJumped { get; set; }
     [Header("Hunger Values")]
     [SerializeField] private float _hungerPassiveDecreasingRate;
     [SerializeField] private float _hungerInstantIncreasingRate;
@@ -28,8 +30,8 @@ public class SurvivalStatesManager : MonoBehaviour
 
     private float _heatValue, _energyValue, _hungerValue, _mentalValue;
 
-    private SurvivalStatesManager _instance;
-    public SurvivalStatesManager instance { get { return _instance; } }
+    private static SurvivalStatesManager _instance;
+    public static SurvivalStatesManager instance { get { return _instance; } }
     private void Awake()
     {
         if(_instance !=null && _instance != this)
@@ -50,6 +52,7 @@ public class SurvivalStatesManager : MonoBehaviour
     {
         ControlHunger();
         ControlMental();
+        ControlHeat();
     }
     private void ControlHunger()
     {
@@ -78,5 +81,36 @@ public class SurvivalStatesManager : MonoBehaviour
     private void ControlHeat()
     {
         _heatSlider.value = _heatValue;
+        if (_isPlayerInside)
+        {
+            _heatValue -= _heatPassiveDecreasingInsideRate * Time.deltaTime;
+        }
+        else if (!_isPlayerInside)
+        {
+            _heatValue -= _heatPassiveDecreasingOutsideRate * Time.deltaTime;
+        }
+    }
+    private void ControlEnergy()
+    {
+        if (isPlayerIdle) return;
+
+        _energySlider.value = _energyValue;
+
+        //Walking
+        if (!isPlayerRunning)
+        {
+            _energyValue -= _energyPassiveDecreasingWalkingRate * Time.deltaTime;
+        }
+        //Running
+        else if (isPlayerRunning)
+        {
+            _energyValue -= _enegryPassiveDecreasingRunningRate * Time.deltaTime;
+        }
+        //Jumping
+        if (playerHasJumped)
+        {
+            //todo
+        }
+
     }
 }

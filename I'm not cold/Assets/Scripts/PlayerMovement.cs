@@ -49,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         _isRunning = Input.GetKey(KeyCode.LeftShift);
         _inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
         _moveDirection = _orientationObjectTransform.forward * _inputVector.y + _orientationObjectTransform.right * _inputVector.x;
+        SendMovementInfoToEnergyCounter();
+
         if (_isRunning)
         {
             _playerRigidbody.AddForce(_moveDirection.normalized * _runningSpeed * Time.deltaTime, ForceMode.Force);
@@ -67,5 +69,20 @@ public class PlayerMovement : MonoBehaviour
         _rotationX = Mathf.Clamp(_rotationX, -80f, 80f);
         _orientationObjectTransform.rotation = Quaternion.Euler(0f, _rotationY, 0f);
         _cameraTransform.rotation = Quaternion.Euler(_rotationX, _rotationY, 0f);
+    }
+    private void SendMovementInfoToEnergyCounter()
+    {
+        if(_inputVector == Vector2.zero)
+        {
+            SurvivalStatesManager.instance.isPlayerIdle = true;
+        }
+        else
+        {
+            if (!_isRunning)
+            {
+                SurvivalStatesManager.instance.isPlayerRunning = true;
+            }
+        }
+
     }
 }
