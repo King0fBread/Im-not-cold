@@ -72,16 +72,28 @@ public class PlayerMovement : MonoBehaviour
     }
     private void SendMovementInfoToEnergyCounter()
     {
+        //Idling
         if(_inputVector == Vector2.zero)
         {
             SurvivalStatesManager.instance.isPlayerIdle = true;
         }
+        //Moving
         else
         {
+            SurvivalStatesManager.instance.isPlayerIdle = false;
             if (!_isRunning)
+            {
+                SurvivalStatesManager.instance.isPlayerRunning = false;
+            }
+            else
             {
                 SurvivalStatesManager.instance.isPlayerRunning = true;
             }
+        }
+        //Jump occured
+        if (_isGrounded == false)
+        {
+            SurvivalStatesManager.instance.playerHasJumped = true;
         }
 
     }

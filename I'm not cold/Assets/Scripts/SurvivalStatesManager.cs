@@ -53,6 +53,7 @@ public class SurvivalStatesManager : MonoBehaviour
         ControlHunger();
         ControlMental();
         ControlHeat();
+        ControlEnergy();
     }
     private void ControlHunger()
     {
@@ -109,7 +110,8 @@ public class SurvivalStatesManager : MonoBehaviour
         //Jumping
         if (playerHasJumped)
         {
-            //todo
+            _energyValue -= _energyInstantDecreasingJumpingRate * Time.deltaTime;
+            playerHasJumped = false;
         }
 
     }
