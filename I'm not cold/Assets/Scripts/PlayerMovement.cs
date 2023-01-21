@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jumping.performed += Jump;
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {

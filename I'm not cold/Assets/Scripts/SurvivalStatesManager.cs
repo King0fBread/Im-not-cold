@@ -18,6 +18,7 @@ public class SurvivalStatesManager : MonoBehaviour
     [SerializeField] private float _enegryPassiveDecreasingRunningRate;
     [SerializeField] private float _energyInstantDecreasingJumpingRate;
     [SerializeField] private float _energyInstantIncreasingRate;
+    [SerializeField] private float _energyPassiveIncreasingRate;
     public bool isPlayerIdle { get; set; }
     public bool isPlayerRunning { get; set; }
     public bool playerHasJumped { get; set; }
@@ -26,7 +27,8 @@ public class SurvivalStatesManager : MonoBehaviour
     [SerializeField] private float _hungerInstantIncreasingRate;
     [Header("Mental Values")]
     [SerializeField] private float _mentalPassiveDecreasingRate;
-    [SerializeField] private float _mentalInstantIncreasingRate;
+    [SerializeField] private float _mentalInstantIncreasingEatingRate;
+    [SerializeField] private float _mentalInstantIncreasingPlayingRate;
 
     private float _heatValue, _energyValue, _hungerValue, _mentalValue;
 
@@ -93,10 +95,12 @@ public class SurvivalStatesManager : MonoBehaviour
     }
     private void ControlEnergy()
     {
-        if (isPlayerIdle) return;
-
         _energySlider.value = _energyValue;
-
+        //Idle
+        if (isPlayerIdle)
+        {
+            _energyValue += _energyPassiveIncreasingRate * Time.deltaTime;
+        }
         //Walking
         if (!isPlayerRunning)
         {
@@ -114,5 +118,17 @@ public class SurvivalStatesManager : MonoBehaviour
             playerHasJumped = false;
         }
 
+    }
+    public void IncreaseHungerValueFromEating()
+    {
+        _hungerValue += _hungerInstantIncreasingRate;
+    }
+    public void IncreaseEnergyValueFromEating()
+    {
+        _energyValue += _energyInstantIncreasingRate;
+    }
+    public void IncreaseMentalValueFromEating()
+    {
+        _mentalValue += _mentalInstantIncreasingEatingRate;
     }
 }
