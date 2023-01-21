@@ -37,8 +37,9 @@ public class PlayerPickAndDropItems : MonoBehaviour
             raycastHit.transform.TryGetComponent(out _grabableObject);
             _grabableObject.Pick(_objectCarryingTransform);
             _grabbedCollider = _grabableObject.GetComponent<Collider>();
-
             Physics.IgnoreCollision(_playerCollider, _grabbedCollider, true);
+
+            InventoryObserver.currentInventoryItem = _grabableObject.gameObject;
         }
     }
     private void DropObject()
@@ -46,5 +47,13 @@ public class PlayerPickAndDropItems : MonoBehaviour
         _grabableObject.Drop();
         _grabableObject = null;
         Physics.IgnoreCollision(_playerCollider, _grabbedCollider, false);
+
+        InventoryObserver.currentInventoryItem = null;
+    }
+    public void DisposeOfGrabbedObject()
+    {
+        Destroy(_grabableObject.gameObject);
+        _grabableObject = null;
+        InventoryObserver.currentInventoryItem = null;
     }
 }

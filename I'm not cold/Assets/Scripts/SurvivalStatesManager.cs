@@ -117,7 +117,6 @@ public class SurvivalStatesManager : MonoBehaviour
             _energyValue -= _energyInstantDecreasingJumpingRate * Time.deltaTime;
             playerHasJumped = false;
         }
-
     }
     public void IncreaseHungerValueFromEating()
     {
