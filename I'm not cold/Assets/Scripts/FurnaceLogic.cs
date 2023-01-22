@@ -29,25 +29,32 @@ public class FurnaceLogic : MonoBehaviour
             //pp
         }
     }
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
-        if(CheckInteractableDistance())
+        if (CheckInteractableDistance() && InventoryObserver.currentInventoryItem != null)
         {
             InventoryObserver.currentInventoryItem.TryGetComponent<BurnableItem>(out _currentItem);
-            if(_currentItem != null)
+            if (_currentItem != null)
             {
                 _selectionIcon.SetActive(true);
                 _canBurnItem = true;
             }
         }
+        else
+            _selectionIcon.SetActive(false);
     }
     private void OnMouseDown()
     {
         if (CheckInteractableDistance() && _canBurnItem)
         {
             _currentHeatValue += _currentItem.burningValue;
+            if (_currentHeatValue > 1)
+                _currentHeatValue = 1;
+
             _playerPickAndDropItems.DisposeOfGrabbedObject();
+            _currentItem = null;
             _canBurnItem = false;
+            _selectionIcon.SetActive(false);
         }
     }
     private void OnMouseExit()
@@ -59,5 +66,9 @@ public class FurnaceLogic : MonoBehaviour
     private bool CheckInteractableDistance()
     {
         return Vector3.Distance(transform.position, _playerPickAndDropItems.gameObject.transform.position) <= _interactableDistance;
+    }
+    public float GetCurrentHeatValue()
+    {
+        return _currentHeatValue;
     }
 }

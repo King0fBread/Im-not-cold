@@ -12,7 +12,8 @@ public class SurvivalStatesManager : MonoBehaviour
     [SerializeField] private float _heatPassiveDecreasingInsideRate;
     [SerializeField] private float _heatPassiveDecreasingOutsideRate;
     [SerializeField] private float _heatPassiveIncreasingRate;
-    public bool _isPlayerInside { get; set; }
+    public bool isPlayerInside { get; set; }
+    public bool isPlayerNearFurnace { get; set; }
     [Header("Energy Values")]
     [SerializeField] private float _energyPassiveDecreasingWalkingRate;
     [SerializeField] private float _enegryPassiveDecreasingRunningRate;
@@ -60,38 +61,29 @@ public class SurvivalStatesManager : MonoBehaviour
     private void ControlHunger()
     {
         _hungerSlider.value = _hungerValue;
-        if (_hungerValue > 0)
-        {
-            _hungerValue -= _hungerPassiveDecreasingRate * Time.deltaTime;
-        }
-        else if(_hungerValue <= 0)
-        {
-            //some post processing screen effect (if 2 or more states at 0 - death)
-        }
+        _hungerValue -= _hungerPassiveDecreasingRate * Time.deltaTime;
+        ObserveIfValueIsZero(_hungerValue);
     }
     private void ControlMental()
     {
         _mentalSlider.value = _mentalValue;
-        if(_mentalValue > 0)
-        {
-            _mentalValue -= _mentalPassiveDecreasingRate * Time.deltaTime;
-        }
-        else if(_mentalValue <= 0)
-        {
-            //yeah
-        }
+        _mentalValue -= _mentalPassiveDecreasingRate * Time.deltaTime;
+        ObserveIfValueIsZero(_mentalValue);
     }
     private void ControlHeat()
     {
         _heatSlider.value = _heatValue;
-        if (_isPlayerInside)
+        //Passive decreasing
+        if (isPlayerInside)
         {
             _heatValue -= _heatPassiveDecreasingInsideRate * Time.deltaTime;
         }
-        else if (!_isPlayerInside)
+        else if (!isPlayerInside)
         {
             _heatValue -= _heatPassiveDecreasingOutsideRate * Time.deltaTime;
         }
+        ObserveIfValueIsZero(_heatValue);
+        TryIncreaseHeatValue();
     }
     private void ControlEnergy()
     {
@@ -100,6 +92,7 @@ public class SurvivalStatesManager : MonoBehaviour
         if (isPlayerIdle)
         {
             _energyValue += _energyPassiveIncreasingRate * Time.deltaTime;
+            CapSurvivalValueAtMax(_energyValue);
         }
         //Walking
         if (!isPlayerRunning)
@@ -117,17 +110,42 @@ public class SurvivalStatesManager : MonoBehaviour
             _energyValue -= _energyInstantDecreasingJumpingRate * Time.deltaTime;
             playerHasJumped = false;
         }
+        ObserveIfValueIsZero(_energyValue);
+    }
+    private void ObserveIfValueIsZero(float value)
+    {
+        if(value < 0)
+        {
+            value = 0;
+            //reference dying class and stop the update method
+        }
+    }
+    private void CapSurvivalValueAtMax(float value)
+    {
+        if (value > 1)
+            value = 1;
+    }
+    private void TryIncreaseHeatValue()
+    {
+        if (isPlayerNearFurnace)
+        {
+            _heatValue += _heatPassiveIncreasingRate * Time.deltaTime;
+            CapSurvivalValueAtMax(_heatValue);
+        }
     }
     public void IncreaseHungerValueFromEating()
     {
         _hungerValue += _hungerInstantIncreasingRate;
+        CapSurvivalValueAtMax(_hungerValue);
     }
     public void IncreaseEnergyValueFromEating()
     {
         _energyValue += _energyInstantIncreasingRate;
+        CapSurvivalValueAtMax(_energyValue);
     }
     public void IncreaseMentalValueFromEating()
     {
         _mentalValue += _mentalInstantIncreasingEatingRate;
+        CapSurvivalValueAtMax(_mentalValue);
     }
 }

@@ -14,6 +14,9 @@ public class JumpingGroundCheck : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        _playerMovement._isGrounded = false;
+        if (other.isTrigger)
+        {
+            _playerMovement._isGrounded = false;
+        }
     }
 }

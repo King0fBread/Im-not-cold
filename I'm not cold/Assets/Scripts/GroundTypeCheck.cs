@@ -13,6 +13,6 @@ public class GroundTypeCheck : MonoBehaviour
     private void Update()
     {
         _isPlayerInside = Physics.Raycast(_transform.position, Vector3.down, _raycastDistance, _cabinFloorLayer);
-        SurvivalStatesManager.instance._isPlayerInside = _isPlayerInside;
+        SurvivalStatesManager.instance.isPlayerInside = _isPlayerInside;
     }
 }
