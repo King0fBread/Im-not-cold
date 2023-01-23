@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpingGroundCheck : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private List<Collider> _collidersToIgnore;
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger == false)
@@ -14,6 +15,9 @@ public class JumpingGroundCheck : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        if (_collidersToIgnore.Contains(other))
+            return;
+
         if (other.isTrigger)
         {
             _playerMovement._isGrounded = false;

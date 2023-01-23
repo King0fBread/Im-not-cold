@@ -7,15 +7,18 @@ public class FurnaceLogic : MonoBehaviour
 {
     [SerializeField] private GameObject _selectionIcon;
     [SerializeField] private PlayerPickAndDropItems _playerPickAndDropItems;
+    [SerializeField] private ParticleSystem _chimneySmokeParticles;
     [SerializeField] private Slider _heatSlider;
     [SerializeField] private float _passiveDecreasingValue;
     private BurnableItem _currentItem;
     private float _currentHeatValue = 1f;
-    private float _interactableDistance = 1f;
+    private float _interactableDistance = 1.1f;
     private bool _canBurnItem;
+    private bool _particlesAreActive = false;
     private void Update()
     {
         DecreaseHeatMeter();
+        ControlParticles();
     }
     private void DecreaseHeatMeter()
     {
@@ -24,9 +27,23 @@ public class FurnaceLogic : MonoBehaviour
         {
             _currentHeatValue -= _passiveDecreasingValue * Time.deltaTime;
         }
+        else if(_currentHeatValue < 0)
+        {
+            _currentHeatValue = 0;
+            //pp
+        }
+    }
+    private void ControlParticles()
+    {
+        if(!_particlesAreActive && _currentHeatValue > 0)
+        {
+            _chimneySmokeParticles.Play();
+            _particlesAreActive = true;
+        }
         else
         {
-            //pp
+            _chimneySmokeParticles.Stop();
+            _particlesAreActive = false;
         }
     }
     private void OnMouseOver()

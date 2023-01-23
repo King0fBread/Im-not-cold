@@ -7,7 +7,7 @@ public class FoodItem : MonoBehaviour
     [SerializeField] private GameObject _foodSelectionIcon;
     [SerializeField] private Transform _playerTransform;
     private float _interactableDistance = 0.9f;
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         if (CheckInteractableDistance())
             _foodSelectionIcon.SetActive(true);

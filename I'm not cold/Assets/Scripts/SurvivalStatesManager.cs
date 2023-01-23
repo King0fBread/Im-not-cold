@@ -130,7 +130,8 @@ public class SurvivalStatesManager : MonoBehaviour
         if (isPlayerNearFurnace)
         {
             _heatValue += _heatPassiveIncreasingRate * Time.deltaTime;
-            CapSurvivalValueAtMax(_heatValue);
+            if (_heatValue > 1)
+                _heatValue = 1;
         }
     }
     public void IncreaseHungerValueFromEating()
