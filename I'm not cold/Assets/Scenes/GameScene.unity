@@ -2244,6 +2244,7 @@ GameObject:
   - component: {fileID: 558040692}
   - component: {fileID: 558040696}
   - component: {fileID: 558040697}
+  - component: {fileID: 558040698}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Untagged
@@ -2314,6 +2315,8 @@ Transform:
   - {fileID: 1081371951}
   - {fileID: 1797141435}
   - {fileID: 1655928824}
+  - {fileID: 1154335344}
+  - {fileID: 1526073712}
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2351,6 +2354,21 @@ MonoBehaviour:
   _cabinFloorLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &558040698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558040691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9fbfaf778b01c8499e75b1a75465be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lowerRaycastTransform: {fileID: 1154335344}
+  _upperRaycastTransform: {fileID: 1526073712}
+  _stepAmount: 0.1
 --- !u!4 &578433569
 Transform:
   m_ObjectHideFlags: 0
@@ -4742,6 +4760,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6443ce9b274380408dd397005d5bfc7, type: 3}
+--- !u!1 &1154335343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154335344}
+  m_Layer: 0
+  m_Name: StairsLowerRaycast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1154335344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154335343}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.274, z: 0.153}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 558040695}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1157982462 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 127696611546080107, guid: e6443ce9b274380408dd397005d5bfc7,
@@ -10996,6 +11045,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492949350}
   m_CullTransparentMesh: 1
+--- !u!1 &1526073711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1526073712}
+  m_Layer: 0
+  m_Name: StairsUpperRaycast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1526073712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526073711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.058, z: 0.15299988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 558040695}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1535366600
 PrefabInstance:
   m_ObjectHideFlags: 0
