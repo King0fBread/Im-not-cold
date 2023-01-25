@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class JumpingGroundCheck : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private List<Collider> _collidersToIgnore;
-    private void OnTriggerEnter(Collider other)
+    private PlayerMovement _playerMovement;
+
+    private void Awake()
     {
-        if (other.isTrigger == false)
-        {
-            _playerMovement._isGrounded = true;
-        }
+        _playerMovement = GetComponent<PlayerMovement>();
     }
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        if (_collidersToIgnore.Contains(other))
+        if (_collidersToIgnore.Contains(collision.collider))
             return;
 
-        if (other.isTrigger)
-        {
-            _playerMovement._isGrounded = false;
-        }
+        _playerMovement._isGrounded = false;
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (_collidersToIgnore.Contains(collision.collider))
+            return;
+
+        _playerMovement._isGrounded = true;
     }
 }
