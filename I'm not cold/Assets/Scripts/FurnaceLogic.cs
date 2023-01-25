@@ -14,7 +14,6 @@ public class FurnaceLogic : MonoBehaviour
     private float _currentHeatValue = 1f;
     private float _interactableDistance = 1.1f;
     private bool _canBurnItem;
-    private bool _particlesAreActive = false;
     private void Update()
     {
         DecreaseHeatMeter();
@@ -23,11 +22,11 @@ public class FurnaceLogic : MonoBehaviour
     private void DecreaseHeatMeter()
     {
         _heatSlider.value = _currentHeatValue;
-        if (_currentHeatValue >= 0)
+        if (_currentHeatValue > 0)
         {
             _currentHeatValue -= _passiveDecreasingValue * Time.deltaTime;
         }
-        else if(_currentHeatValue < 0)
+        else if(_currentHeatValue <= 0)
         {
             _currentHeatValue = 0;
             //pp
@@ -35,15 +34,13 @@ public class FurnaceLogic : MonoBehaviour
     }
     private void ControlParticles()
     {
-        if(!_particlesAreActive && _currentHeatValue > 0)
+        if(!_chimneySmokeParticles.isPlaying && _currentHeatValue > 0)
         {
             _chimneySmokeParticles.Play();
-            _particlesAreActive = true;
         }
-        else
+        else if(_chimneySmokeParticles.isPlaying && _currentHeatValue <= 0)
         {
             _chimneySmokeParticles.Stop();
-            _particlesAreActive = false;
         }
     }
     private void OnMouseOver()

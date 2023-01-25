@@ -62,13 +62,13 @@ public class SurvivalStatesManager : MonoBehaviour
     {
         _hungerSlider.value = _hungerValue;
         _hungerValue -= _hungerPassiveDecreasingRate * Time.deltaTime;
-        ObserveIfValueIsZero(_hungerValue);
+        _hungerValue = ObserveIfValueIsZero(_hungerValue);
     }
     private void ControlMental()
     {
         _mentalSlider.value = _mentalValue;
         _mentalValue -= _mentalPassiveDecreasingRate * Time.deltaTime;
-        ObserveIfValueIsZero(_mentalValue);
+        _mentalValue = ObserveIfValueIsZero(_mentalValue);
     }
     private void ControlHeat()
     {
@@ -82,7 +82,7 @@ public class SurvivalStatesManager : MonoBehaviour
         {
             _heatValue -= _heatPassiveDecreasingOutsideRate * Time.deltaTime;
         }
-        ObserveIfValueIsZero(_heatValue);
+        _heatValue = ObserveIfValueIsZero(_heatValue);
         TryIncreaseHeatValue();
     }
     private void ControlEnergy()
@@ -110,43 +110,52 @@ public class SurvivalStatesManager : MonoBehaviour
             _energyValue -= _energyInstantDecreasingJumpingRate * Time.deltaTime;
             playerHasJumped = false;
         }
-        ObserveIfValueIsZero(_energyValue);
+        _energyValue = ObserveIfValueIsZero(_energyValue);
     }
-    private void ObserveIfValueIsZero(float value)
+    private float ObserveIfValueIsZero(float value)
     {
         if(value < 0)
         {
-            value = 0;
+            return 0;
             //reference dying class and stop the update method
         }
+        else
+        {
+            return value;
+        }
     }
-    private void CapSurvivalValueAtMax(float value)
+    private float CapSurvivalValueAtMax(float value)
     {
         if (value > 1)
-            value = 1;
+        {
+            return 1;
+        }
+        else
+        {
+            return value;
+        }
     }
     private void TryIncreaseHeatValue()
     {
         if (isPlayerNearFurnace)
         {
             _heatValue += _heatPassiveIncreasingRate * Time.deltaTime;
-            if (_heatValue > 1)
-                _heatValue = 1;
+            _heatValue = CapSurvivalValueAtMax(_heatValue);
         }
     }
     public void IncreaseHungerValueFromEating()
     {
         _hungerValue += _hungerInstantIncreasingRate;
-        CapSurvivalValueAtMax(_hungerValue);
+        _hungerValue = CapSurvivalValueAtMax(_hungerValue);
     }
     public void IncreaseEnergyValueFromEating()
     {
         _energyValue += _energyInstantIncreasingRate;
-        CapSurvivalValueAtMax(_energyValue);
+        _hungerValue = CapSurvivalValueAtMax(_energyValue);
     }
     public void IncreaseMentalValueFromEating()
     {
         _mentalValue += _mentalInstantIncreasingEatingRate;
-        CapSurvivalValueAtMax(_mentalValue);
+        _mentalValue = CapSurvivalValueAtMax(_mentalValue);
     }
 }
