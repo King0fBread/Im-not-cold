@@ -11,18 +11,33 @@ public class JumpingGroundCheck : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
     }
-    private void OnCollisionExit(Collision collision)
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (_collidersToIgnore.Contains(collision.collider))
+    //        return;
+
+    //    _playerMovement._isGrounded = false;
+    //}
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    print("touched " + collision);
+    //    if (_collidersToIgnore.Contains(collision.collider))
+    //        return;
+
+    //    _playerMovement._isGrounded = true;
+    //}
+    private void OnTriggerStay(Collider other)
     {
-        if (_collidersToIgnore.Contains(collision.collider))
+        if (_collidersToIgnore.Contains(other))
             return;
 
-        _playerMovement._isGrounded = false;
+        _playerMovement.isGrounded = true;
     }
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (_collidersToIgnore.Contains(collision.collider))
+        if (_collidersToIgnore.Contains(other))
             return;
 
-        _playerMovement._isGrounded = true;
+        _playerMovement.isGrounded = false;
     }
 }
