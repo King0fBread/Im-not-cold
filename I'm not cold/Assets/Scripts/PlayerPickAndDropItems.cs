@@ -16,7 +16,7 @@ public class PlayerPickAndDropItems : MonoBehaviour
     {
         PlayerInputActions playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
-        playerInputActions.Player.Pickup.performed += PickupOrDropItem;
+        playerInputActions.Player.InteractionE.performed += PickupOrDropItem;
         _playerCollider = GetComponent<CapsuleCollider>();
     }
     private void PickupOrDropItem(InputAction.CallbackContext context)

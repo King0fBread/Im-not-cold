@@ -46,7 +46,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pickup"",
+                    ""name"": ""InteractionE"",
                     ""type"": ""Button"",
                     ""id"": ""60fc27e1-53c6-4803-9f90-9fe7f4458134"",
                     ""expectedControlType"": ""Button"",
@@ -129,7 +129,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pickup"",
+                    ""action"": ""InteractionE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -142,7 +142,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
-        m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
+        m_Player_InteractionE = m_Player.FindAction("InteractionE", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,14 +204,14 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jumping;
-    private readonly InputAction m_Player_Pickup;
+    private readonly InputAction m_Player_InteractionE;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
-        public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
+        public InputAction @InteractionE => m_Wrapper.m_Player_InteractionE;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -227,9 +227,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Jumping.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
                 @Jumping.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
                 @Jumping.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJumping;
-                @Pickup.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
-                @Pickup.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
-                @Pickup.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickup;
+                @InteractionE.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractionE;
+                @InteractionE.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractionE;
+                @InteractionE.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractionE;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -240,9 +240,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Jumping.started += instance.OnJumping;
                 @Jumping.performed += instance.OnJumping;
                 @Jumping.canceled += instance.OnJumping;
-                @Pickup.started += instance.OnPickup;
-                @Pickup.performed += instance.OnPickup;
-                @Pickup.canceled += instance.OnPickup;
+                @InteractionE.started += instance.OnInteractionE;
+                @InteractionE.performed += instance.OnInteractionE;
+                @InteractionE.canceled += instance.OnInteractionE;
             }
         }
     }
@@ -251,6 +251,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJumping(InputAction.CallbackContext context);
-        void OnPickup(InputAction.CallbackContext context);
+        void OnInteractionE(InputAction.CallbackContext context);
     }
 }
