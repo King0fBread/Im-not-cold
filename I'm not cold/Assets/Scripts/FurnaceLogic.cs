@@ -10,6 +10,8 @@ public class FurnaceLogic : MonoBehaviour
     [SerializeField] private ParticleSystem _chimneySmokeParticles;
     [SerializeField] private Slider _heatSlider;
     [SerializeField] private float _passiveDecreasingValue;
+    [SerializeField] private float _passiveRapidDecreasingValue;
+    public bool isFrontDoorOpen { get; set; }
     private BurnableItem _currentItem;
     private float _currentHeatValue = 1f;
     private float _interactableDistance = 1.1f;
@@ -24,7 +26,14 @@ public class FurnaceLogic : MonoBehaviour
         _heatSlider.value = _currentHeatValue;
         if (_currentHeatValue > 0)
         {
-            _currentHeatValue -= _passiveDecreasingValue * Time.deltaTime;
+            if (isFrontDoorOpen)
+            {
+                _currentHeatValue -= _passiveRapidDecreasingValue * Time.deltaTime;
+            }
+            else
+            {
+                _currentHeatValue -= _passiveDecreasingValue * Time.deltaTime;
+            }
         }
         else if(_currentHeatValue <= 0)
         {

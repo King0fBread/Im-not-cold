@@ -31,4 +31,8 @@ public class FoodItem : MonoBehaviour
     {
         return Vector3.Distance(transform.position, _playerTransform.position) <= _interactableDistance;
     }
+    private void OnDestroy()
+    {
+        _foodSelectionIcon.SetActive(false);
+    }
 }

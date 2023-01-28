@@ -151,7 +151,7 @@ public class SurvivalStatesManager : MonoBehaviour
     public void IncreaseEnergyValueFromEating()
     {
         _energyValue += _energyInstantIncreasingRate;
-        _hungerValue = CapSurvivalValueAtMax(_energyValue);
+        _energyValue = CapSurvivalValueAtMax(_energyValue);
     }
     public void IncreaseMentalValueFromEating()
     {
