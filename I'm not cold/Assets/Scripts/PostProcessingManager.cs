@@ -16,7 +16,7 @@ public class PostProcessingManager : MonoBehaviour
     {
         _globalPPVolume.profile.TryGet(out _chromaticAberration);
         _globalPPVolume.profile.TryGet(out _lensDistortion);
-        playerCloseToDying = true;
+        //playerCloseToDying = true;
     }
     private void Update()
     {

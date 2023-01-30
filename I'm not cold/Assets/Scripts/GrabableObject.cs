@@ -11,17 +11,6 @@ public class GrabableObject : MonoBehaviour
     {
         _thisRigidbody = GetComponent<Rigidbody>();
     }
-    private void OnMouseOver()
-    {
-        CursorIconChanger.EInteractionAvailable = true;
-        print("over");
-        //TODO change this to raycasts to aviod other triggers
-    }
-    private void OnMouseExit()
-    {
-        CursorIconChanger.EInteractionAvailable = false;
-        print("left");
-    }
     public void Pick(Transform objectCarryingTransform)
     {
         _objectCarryingTransform = objectCarryingTransform;
