@@ -6,7 +6,14 @@ public class FoodItem : MonoBehaviour
 {
     [SerializeField] private GameObject _foodSelectionIcon;
     [SerializeField] private Transform _playerTransform;
+    private FoodItem _foodItem;
+    private Rigidbody _rb;
     private float _interactableDistance = 0.9f;
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+        _foodItem = GetComponent<FoodItem>();
+    }
     private void OnMouseOver()
     {
         if (CheckInteractableDistance())
@@ -20,7 +27,9 @@ public class FoodItem : MonoBehaviour
             SurvivalStatesManager.instance.IncreaseHungerValueFromEating();
             SurvivalStatesManager.instance.IncreaseEnergyValueFromEating();
             SurvivalStatesManager.instance.IncreaseMentalValueFromEating();
-            Destroy(gameObject);
+            _rb.mass = 0.4f;
+            _foodItem.enabled = false;
+
         }
     }
     private void OnMouseExit()

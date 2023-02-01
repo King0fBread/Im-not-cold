@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class SurvivalStatesManager : MonoBehaviour
 {
     [Header("Sliders")]
-    [SerializeField] private Slider _heatSlider, _energySlider, _hungerSlider, _mentalSlider;
+    [SerializeField] private Slider _heatSlider;
+    [SerializeField] private Slider _energySlider;
+    [SerializeField] private Slider _hungerSlider;
+    [SerializeField] private Slider _mentalSlider;
     [Header("Heat values")]
     [SerializeField] private float _heatPassiveDecreasingInsideRate;
     [SerializeField] private float _heatPassiveDecreasingOutsideRate;
@@ -25,11 +28,12 @@ public class SurvivalStatesManager : MonoBehaviour
     public bool playerHasJumped { get; set; }
     [Header("Hunger Values")]
     [SerializeField] private float _hungerPassiveDecreasingRate;
-    [SerializeField] private float _hungerInstantIncreasingRate;
+    [SerializeField] private float _hungerInstantIncreasingEatingRate;
+    [SerializeField] private float _hungerInstanctIncreasingSnackingRate;
     [Header("Mental Values")]
     [SerializeField] private float _mentalPassiveDecreasingRate;
     [SerializeField] private float _mentalInstantIncreasingEatingRate;
-    [SerializeField] private float _mentalInstantIncreasingPlayingRate;
+    [SerializeField] private float _mentalInstantIncreasingSnackingRate;
 
     private float _heatValue, _energyValue, _hungerValue, _mentalValue;
 
@@ -145,7 +149,12 @@ public class SurvivalStatesManager : MonoBehaviour
     }
     public void IncreaseHungerValueFromEating()
     {
-        _hungerValue += _hungerInstantIncreasingRate;
+        _hungerValue += _hungerInstantIncreasingEatingRate;
+        _hungerValue = CapSurvivalValueAtMax(_hungerValue);
+    }
+    public void IncreaseHungerValueFromSnacking()
+    {
+        _hungerValue += _hungerInstanctIncreasingSnackingRate;
         _hungerValue = CapSurvivalValueAtMax(_hungerValue);
     }
     public void IncreaseEnergyValueFromEating()
@@ -156,6 +165,11 @@ public class SurvivalStatesManager : MonoBehaviour
     public void IncreaseMentalValueFromEating()
     {
         _mentalValue += _mentalInstantIncreasingEatingRate;
+        _mentalValue = CapSurvivalValueAtMax(_mentalValue);
+    }
+    public void IncreaseMentalValueFromSnacking()
+    {
+        _mentalValue += _mentalInstantIncreasingSnackingRate;
         _mentalValue = CapSurvivalValueAtMax(_mentalValue);
     }
 }
