@@ -906,6 +906,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195190014}
   m_CullTransparentMesh: 1
+--- !u!1 &216523995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 216523997}
+  - component: {fileID: 216523996}
+  m_Layer: 0
+  m_Name: NegativeStatesDisplayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &216523996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216523995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e414280f70c784bb5c31997193f9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heatSlider: {fileID: 1314772568}
+  _energySlider: {fileID: 969419155}
+  _hungerSlider: {fileID: 827318865}
+  _mentalSlider: {fileID: 746008310}
+  _heatShortageState: {fileID: 406327680}
+  _energyShortageState: {fileID: 1978609707}
+  _hungerShortageState: {fileID: 1341503951}
+  _mentalShortageState: {fileID: 986870767}
+--- !u!4 &216523997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216523995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 210.71007, y: 7.450841, z: 244.65027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219420409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1366728840615246, guid: 86163d1770fbaff47bad63dfc78a24b8,
@@ -1643,7 +1695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &406327681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5342,7 +5394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &986870768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12019,7 +12071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1341503952
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14725,7 +14777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1978609708
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15336,8 +15388,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.025242405, y: 0.01757428, z: 0.010749479}
-  m_Center: {x: -0.001304374, y: 0.008716671, z: 0.000088290304}
+  m_Size: {x: 0.022999523, y: 0.017574284, z: 0.010749479}
+  m_Center: {x: -0.00018293095, y: 0.008716673, z: 0.00008829018}
 --- !u!1 &2035714857
 GameObject:
   m_ObjectHideFlags: 0
