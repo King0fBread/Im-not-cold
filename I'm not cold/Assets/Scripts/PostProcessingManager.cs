@@ -16,7 +16,6 @@ public class PostProcessingManager : MonoBehaviour
     {
         _globalPPVolume.profile.TryGet(out _chromaticAberration);
         _globalPPVolume.profile.TryGet(out _lensDistortion);
-        //playerCloseToDying = true;
     }
     private void Update()
     {
@@ -25,7 +24,7 @@ public class PostProcessingManager : MonoBehaviour
             _chromaticAberration.intensity.value += _chromaticAberrationChangingRate * Time.deltaTime;
             _lensDistortion.intensity.value -= _lensDistortionChangingRate * Time.deltaTime;
         }
-        else if(!playerCloseToDying && PostProcessingValuesAtMax())
+        else if(!playerCloseToDying && !PostProcessingValuesAtMin())
         {
             _chromaticAberration.intensity.value -= _chromaticAberrationChangingRate * Time.deltaTime;
             _lensDistortion.intensity.value += _lensDistortionChangingRate * Time.deltaTime;
@@ -34,5 +33,9 @@ public class PostProcessingManager : MonoBehaviour
     private bool PostProcessingValuesAtMax()
     {
         return _chromaticAberration.intensity.value == 1f && _lensDistortion.intensity.value <= -0.5f;
+    }
+    private bool PostProcessingValuesAtMin()
+    {
+        return _chromaticAberration.intensity.value == 0f && _lensDistortion.intensity.value >= 0f;
     }
 }

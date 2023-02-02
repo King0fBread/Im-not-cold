@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class NegativeStatesDisplayer : MonoBehaviour
 {
+    [Header("PostProcessing")]
+    [SerializeField] private PostProcessingManager _postProcessingManager;
     [Header("Sliders")]
     [SerializeField] private Slider _heatSlider;
     [SerializeField] private Slider _energySlider;
@@ -26,8 +28,14 @@ public class NegativeStatesDisplayer : MonoBehaviour
     private void ObserveSliderAndActivateState(Slider slider, GameObject stateIcon)
     {
         if (slider.value <= 0 && !stateIcon.activeSelf)
+        {
             stateIcon.SetActive(true);
+            _postProcessingManager.playerCloseToDying = true;
+        }
         else if (slider.value > 0 && stateIcon.activeSelf)
+        {
             stateIcon.SetActive(false);
+            _postProcessingManager.playerCloseToDying = false;
+        }
     }
 }
