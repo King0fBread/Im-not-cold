@@ -29,7 +29,8 @@ public class SnackItem : MonoBehaviour
     }
     private void OnDestroy()
     {
-        _snackSelectionIcon.SetActive(false);
+        if(_snackSelectionIcon != null)
+            _snackSelectionIcon.SetActive(false);
     }
     private bool CheckInteractableDistance()
     {

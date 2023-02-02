@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _foodSelectionIcon: {fileID: 0}
+  _emptyFoodCan: {fileID: 6614075229890098476, guid: 0e270b5b6622ab94bbc20a8d68981beb,
+    type: 3}
   _playerTransform: {fileID: 0}
 --- !u!54 &-4647835442968618607
 Rigidbody:
