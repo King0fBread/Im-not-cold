@@ -40,6 +40,7 @@ public class FoodItem : MonoBehaviour
     }
     private void OnDestroy()
     {
-        _foodSelectionIcon.SetActive(false);
+        if(_foodSelectionIcon != null)
+            _foodSelectionIcon.SetActive(false);
     }
 }
