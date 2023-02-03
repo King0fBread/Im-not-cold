@@ -6,12 +6,14 @@ using UnityEngine.Rendering.Universal;
 
 public class PostProcessingManager : MonoBehaviour
 {
+    [SerializeField] private DyingAndResettingLogic _dyingAndResettingLogic;
     [SerializeField] private Volume _globalPPVolume;
     [SerializeField] private float _chromaticAberrationChangingRate;
     [SerializeField] private float _lensDistortionChangingRate;
     public bool playerCloseToDying { get; set; }
     private ChromaticAberration _chromaticAberration;
     private LensDistortion _lensDistortion;
+    private bool _deathCountdownIsOn = false;
     private void Awake()
     {
         _globalPPVolume.profile.TryGet(out _chromaticAberration);
@@ -29,6 +31,8 @@ public class PostProcessingManager : MonoBehaviour
             _chromaticAberration.intensity.value -= _chromaticAberrationChangingRate * Time.deltaTime;
             _lensDistortion.intensity.value += _lensDistortionChangingRate * Time.deltaTime;
         }
+
+        ObserveDyingState();
     }
     private bool PostProcessingValuesAtMax()
     {
@@ -37,5 +41,18 @@ public class PostProcessingManager : MonoBehaviour
     private bool PostProcessingValuesAtMin()
     {
         return _chromaticAberration.intensity.value == 0f && _lensDistortion.intensity.value >= 0f;
+    }
+    private void ObserveDyingState()
+    {
+        if (playerCloseToDying && !_deathCountdownIsOn)
+        {
+            _dyingAndResettingLogic.InitiateDying();
+            _deathCountdownIsOn = true;
+        }
+        else if (!playerCloseToDying && _deathCountdownIsOn)
+        {
+            _dyingAndResettingLogic.CancelDying();
+            _deathCountdownIsOn = false;
+        }
     }
 }
