@@ -16,5 +16,6 @@ public class DyingAndResettingLogic : MonoBehaviour
     private IEnumerator DeathCountdownCouroutine()
     {
         yield return new WaitForSeconds(_deathCountdownTimerValue);
+        print("died");
     }
 }

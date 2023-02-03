@@ -472,6 +472,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92189642}
   m_CullTransparentMesh: 1
+--- !u!1 &97427852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1590717157382994, guid: 5fcfdca045ca3484baf910aae6bffc54,
+    type: 3}
+  m_PrefabInstance: {fileID: 1824968082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &97427857
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97427852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.095424, y: 0.62336403, z: 8.115369}
+  m_Center: {x: -0.00000047683716, y: 0.183211, z: -0.5101285}
 --- !u!1 &103797434
 GameObject:
   m_ObjectHideFlags: 0
@@ -14333,6 +14352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wasteland_Cabin_Empty
       objectReference: {fileID: 0}
+    - target: {fileID: 1590717157382994, guid: 5fcfdca045ca3484baf910aae6bffc54, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4638004701726210, guid: 5fcfdca045ca3484baf910aae6bffc54, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -14380,6 +14403,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 64957976539842526, guid: 5fcfdca045ca3484baf910aae6bffc54, type: 3}
     - {fileID: 64102119688811306, guid: 5fcfdca045ca3484baf910aae6bffc54, type: 3}
+    - {fileID: 64971082542851530, guid: 5fcfdca045ca3484baf910aae6bffc54, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5fcfdca045ca3484baf910aae6bffc54, type: 3}
 --- !u!1 &1857407333
 GameObject:
@@ -22547,6 +22571,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8275722000056411095}
+  - component: {fileID: 8760229029049481583}
+  - component: {fileID: 8760229029049481582}
   m_Layer: 0
   m_Name: TrashBin
   m_TagString: Untagged
@@ -22554,6 +22580,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!136 &8760229029049481582
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760229029049481581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.29016623
+  m_Height: 0.8822446
+  m_Direction: 1
+  m_Center: {x: 0.42226195, y: 0.13112222, z: 0.26641017}
+--- !u!136 &8760229029049481583
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760229029049481581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.36
+  m_Height: 1.7737175
+  m_Direction: 1
+  m_Center: {x: -0.0000000020112285, y: 0.38685858, z: 9.0525176e-10}
 --- !u!33 &8820917831471044472
 MeshFilter:
   m_ObjectHideFlags: 0
