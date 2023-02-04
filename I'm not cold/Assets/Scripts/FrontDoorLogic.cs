@@ -10,16 +10,18 @@ public class FrontDoorLogic : MonoBehaviour
     [SerializeField] private FurnaceLogic _furnaceLogic;
     private Animator _doorAnimator;
     private bool _doorIsClosed = true;
-    public bool canInteractWithDoor { get; set; }
+    private bool _canInteractWithDoor = true;
+    private bool _doorCurrentlyInMovement;
     private void Awake()
     {
         _doorAnimator = GetComponent<Animator>();
     }
     private void OnMouseDown()
     {
-        if (!canInteractWithDoor)
+        if (!_canInteractWithDoor)
             return;
 
+        _doorCurrentlyInMovement = true;
         if (_doorIsClosed)
         {
             _doorAnimator.Play("DoorOpening");
@@ -35,15 +37,15 @@ public class FrontDoorLogic : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        if (CheckInteractableDistance())
+        if (CheckInteractableDistance() && !_doorCurrentlyInMovement)
         {
             _mouseInteractionIcon.SetActive(true);
-            canInteractWithDoor = true;
+            _canInteractWithDoor = true;
         }
-        else if (!CheckInteractableDistance())
+        else if (!CheckInteractableDistance() || _doorCurrentlyInMovement)
         {
             _mouseInteractionIcon.SetActive(false);
-            canInteractWithDoor = false;
+            _canInteractWithDoor = false;
         }
     }
     private void OnMouseExit()
@@ -53,5 +55,9 @@ public class FrontDoorLogic : MonoBehaviour
     private bool CheckInteractableDistance()
     {
         return Vector3.Distance(transform.position, _playerTransform.gameObject.transform.position) <= _interactableDistance;
+    }
+    public void EnableDoorInteractions()
+    {
+        _doorCurrentlyInMovement = false;
     }
 }
