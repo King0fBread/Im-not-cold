@@ -10,14 +10,14 @@ public class FrontDoorLogic : MonoBehaviour
     [SerializeField] private FurnaceLogic _furnaceLogic;
     private Animator _doorAnimator;
     private bool _doorIsClosed = true;
-    private bool _canInteractWithDoor = false;
+    public bool canInteractWithDoor { get; set; }
     private void Awake()
     {
         _doorAnimator = GetComponent<Animator>();
     }
     private void OnMouseDown()
     {
-        if (!_canInteractWithDoor)
+        if (!canInteractWithDoor)
             return;
 
         if (_doorIsClosed)
@@ -38,12 +38,12 @@ public class FrontDoorLogic : MonoBehaviour
         if (CheckInteractableDistance())
         {
             _mouseInteractionIcon.SetActive(true);
-            _canInteractWithDoor = true;
+            canInteractWithDoor = true;
         }
         else if (!CheckInteractableDistance())
         {
             _mouseInteractionIcon.SetActive(false);
-            _canInteractWithDoor = false;
+            canInteractWithDoor = false;
         }
     }
     private void OnMouseExit()

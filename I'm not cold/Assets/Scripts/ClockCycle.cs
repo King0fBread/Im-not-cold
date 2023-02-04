@@ -6,7 +6,7 @@ public class ClockCycle : MonoBehaviour
 {
     [SerializeField] private Transform _hourArrow;
     [SerializeField] private Transform _minuteArrow;
-    private const float REAL_SECONDS_TO_GAME_DAY_RATIO = 60f;
+    private const float REAL_SECONDS_TO_GAME_DAY_RATIO = 600f;
     private float _possibleRotationInDegreesPerDay = 360f;
     private float _possibleHoursPerDay = 12f;
 
@@ -15,7 +15,7 @@ public class ClockCycle : MonoBehaviour
     private void Awake()
     {
         //sets the initial arrows rotations
-        _currentDayTime = 32f / REAL_SECONDS_TO_GAME_DAY_RATIO;
+        _currentDayTime = 318f / REAL_SECONDS_TO_GAME_DAY_RATIO;
     }
     private void Update()
     {
@@ -25,5 +25,10 @@ public class ClockCycle : MonoBehaviour
         _minuteArrow.localEulerAngles = new Vector3(90f, 0, _dayNormalized * _possibleRotationInDegreesPerDay * _possibleHoursPerDay);
 
         _currentDayTime += Time.deltaTime / REAL_SECONDS_TO_GAME_DAY_RATIO;
+
+        if(_dayNormalized * _possibleHoursPerDay >= 5 && _dayNormalized * _possibleHoursPerDay  <= 5.5)
+        {
+            print("time for generator");
+        }
     }
 }
