@@ -10,17 +10,24 @@ public class DyingAndResettingLogic : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _dyingTimerText;
     private float _timeElapsedInFloat;
     private bool _timerRequested;
+    private bool _canDie;
+
+    private Coroutine _dyingCoroutine;
     private void Awake()
     {
         _timeElapsedInFloat = _deathCountdownTimerValue;
     }
     public void InitiateDying()
     {
+        _canDie = true;
         StartCoroutine(DeathCountdownCouroutine());
+        print("started dying");
     }
     public void CancelDying()
     {
-        StopCoroutine(DeathCountdownCouroutine());
+        _canDie = false;
+        print("stopped dying");
+
         _timerRequested = false;
         _dyingTimerText.text = "";
         _timeElapsedInFloat = _deathCountdownTimerValue;
@@ -29,7 +36,12 @@ public class DyingAndResettingLogic : MonoBehaviour
     {
         _timerRequested = true;
         yield return new WaitForSeconds(_deathCountdownTimerValue);
-        print("died");
+        if (_canDie)
+        {
+            print("died");
+            Time.timeScale = 0;
+            //dying logic
+        }
     }
     private void Update()
     {
