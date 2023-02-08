@@ -7,10 +7,15 @@ public class GeneratorLogic : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private GameObject _mosueInteractionIcon;
     [SerializeField] private PlayerPickAndDropItems _playerPickAndDropItems;
+    [SerializeField] private SirenPoleLogic _sirenPoleLogic;
     private float _interactableDistance = 1f;
+    private bool _fuelIsInGenerator = false;
     private void OnMouseOver()
     {
-        if (CheckInteractionConditions())
+        if (!CheckDistance())
+            return;
+
+        if (CheckIfHoldingFuel() || _fuelIsInGenerator)
         {
             _mosueInteractionIcon.SetActive(true);
         }
@@ -25,18 +30,26 @@ public class GeneratorLogic : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (CheckInteractionConditions())
+        if (CheckDistance())
         {
-            _playerPickAndDropItems.DisposeOfGrabbedObject();
-            //gen logic
-            print("brrrrr");
+            if (CheckIfHoldingFuel())
+            {
+                _playerPickAndDropItems.DisposeOfGrabbedObject();
+                _fuelIsInGenerator = true;
+                //sounds
+            }
+            else if(_fuelIsInGenerator)
+            {
+                _sirenPoleLogic.ActivateAlarm();
+                Destroy(gameObject.GetComponent<GeneratorLogic>());
+            }
         }
     }
-    private bool CheckInteractionConditions()
+    private bool CheckIfHoldingFuel()
     {
         if (InventoryObserver.currentInventoryItem != null)
         {
-            if (InventoryObserver.currentInventoryItem.GetComponent<GasCanister>() && CheckDistance())
+            if (InventoryObserver.currentInventoryItem.GetComponent<GasCanister>())
             {
                 return true;
             }

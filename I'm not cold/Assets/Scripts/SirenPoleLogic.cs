@@ -7,5 +7,6 @@ public class SirenPoleLogic : MonoBehaviour
     public void ActivateAlarm()
     {
         //something
+        print("sounds wow");
     }
 }
