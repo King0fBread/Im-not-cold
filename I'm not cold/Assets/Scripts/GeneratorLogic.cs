@@ -45,6 +45,10 @@ public class GeneratorLogic : MonoBehaviour
             }
         }
     }
+    private void OnDestroy()
+    {
+        _mosueInteractionIcon.SetActive(false);
+    }
     private bool CheckIfHoldingFuel()
     {
         if (InventoryObserver.currentInventoryItem != null)

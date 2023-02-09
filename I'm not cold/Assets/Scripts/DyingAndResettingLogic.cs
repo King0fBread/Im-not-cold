@@ -11,17 +11,18 @@ public class DyingAndResettingLogic : MonoBehaviour
     private float _timeElapsedInFloat;
     private bool _timerRequested;
     private bool _canDie;
-
-    private Coroutine _dyingCoroutine;
     private void Awake()
     {
         _timeElapsedInFloat = _deathCountdownTimerValue;
     }
     public void InitiateDying()
     {
-        _canDie = true;
-        StartCoroutine(DeathCountdownCouroutine());
-        print("started dying");
+        if (!_timerRequested)
+        {
+            _canDie = true;
+            StartCoroutine(DeathCountdownCouroutine());
+            print("started dying");
+        }
     }
     public void CancelDying()
     {
@@ -41,6 +42,10 @@ public class DyingAndResettingLogic : MonoBehaviour
             print("died");
             Time.timeScale = 0;
             //dying logic
+        }
+        else if (_canDie)
+        {
+            print("tried dying");
         }
     }
     private void Update()

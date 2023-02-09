@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ClockCycle : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private SirenPoleLogic _sirenPoleLogic;
+    [Header("Clock logic")]
     [SerializeField] private Transform _hourArrow;
     [SerializeField] private Transform _minuteArrow;
     private const float REAL_SECONDS_TO_GAME_DAY_RATIO = 600f;
@@ -26,9 +29,13 @@ public class ClockCycle : MonoBehaviour
 
         _currentDayTime += Time.deltaTime / REAL_SECONDS_TO_GAME_DAY_RATIO;
 
-        if(_dayNormalized * _possibleHoursPerDay >= 5 && _dayNormalized * _possibleHoursPerDay  <= 5.5)
+        if(_dayNormalized * _possibleHoursPerDay >= 6.5 && _dayNormalized * _possibleHoursPerDay  <= 7)
         {
-            print("time for generator");
+            _sirenPoleLogic.activatedInCorrectTime = true;
+        }
+        else if(_sirenPoleLogic.activatedInCorrectTime == true)
+        {
+            _sirenPoleLogic.activatedInCorrectTime = false;
         }
     }
 }

@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class SirenPoleLogic : MonoBehaviour
 {
+    public bool activatedInCorrectTime { get; set; }
     public void ActivateAlarm()
     {
-        //something
         print("sounds wow");
+        if (activatedInCorrectTime)
+        {
+            //win
+            print("winning");
+        }
+        else
+        {
+            //lose
+            print("losing");
+        }
     }
 }
