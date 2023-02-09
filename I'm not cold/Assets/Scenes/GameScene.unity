@@ -1045,7 +1045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e414280f70c784bb5c31997193f9ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _postProcessingManager: {fileID: 441305268}
   _heatSlider: {fileID: 1314772568}
   _energySlider: {fileID: 969419155}
   _hungerSlider: {fileID: 827318865}
@@ -1483,7 +1482,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced1aa7523875e64da253d9d149c4e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathCountdownTimerValue: 10
+  _postProcessingManager: {fileID: 0}
+  _negativeStatesDisplayer: {fileID: 0}
+  _deathCountdownDefaultTimerValue: 0
   _dyingTimerText: {fileID: 1898288731}
 --- !u!1 &330585543
 GameObject:

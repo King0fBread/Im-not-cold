@@ -6,55 +6,38 @@ using TMPro;
 
 public class DyingAndResettingLogic : MonoBehaviour
 {
-    [SerializeField] private int _deathCountdownTimerValue;
+    [Header("References")]
+    [SerializeField] private PostProcessingManager _postProcessingManager;
+    [SerializeField] private NegativeStatesDisplayer _negativeStatesDisplayer;
+    [Header("Dying Logic")]
+    [SerializeField] private int _deathCountdownDefaultTimerValue;
     [SerializeField] private TextMeshProUGUI _dyingTimerText;
-    private float _timeElapsedInFloat;
-    private bool _timerRequested;
-    private bool _canDie;
+
+    private float _timeElapsedInFloatForHeat;
+    private float _timeElapsedInFloatForEnergy;
+    private float _timeElapsedInFloatForHunger;
+    private float _timeElapsedInFloatForMental;
     private void Awake()
     {
-        _timeElapsedInFloat = _deathCountdownTimerValue;
-    }
-    public void InitiateDying()
-    {
-        if (!_timerRequested)
-        {
-            _canDie = true;
-            StartCoroutine(DeathCountdownCouroutine());
-            print("started dying");
-        }
-    }
-    public void CancelDying()
-    {
-        _canDie = false;
-        print("stopped dying");
-
-        _timerRequested = false;
-        _dyingTimerText.text = "";
-        _timeElapsedInFloat = _deathCountdownTimerValue;
-    }
-    private IEnumerator DeathCountdownCouroutine()
-    {
-        _timerRequested = true;
-        yield return new WaitForSeconds(_deathCountdownTimerValue);
-        if (_canDie)
-        {
-            print("died");
-            Time.timeScale = 0;
-            //dying logic
-        }
-        else if (_canDie)
-        {
-            print("tried dying");
-        }
+        _timeElapsedInFloatForHeat = _deathCountdownDefaultTimerValue;
+        _timeElapsedInFloatForEnergy = _deathCountdownDefaultTimerValue;
+        _timeElapsedInFloatForHunger = _deathCountdownDefaultTimerValue;
+        _timeElapsedInFloatForMental = _deathCountdownDefaultTimerValue;
     }
     private void Update()
     {
-        if (!_timerRequested)
-            return;
+        //if (!_timerRequested)
+        //    return;
 
-        _timeElapsedInFloat -= Time.deltaTime;
-        _dyingTimerText.text = Mathf.RoundToInt(_timeElapsedInFloat).ToString();
+        //_timeElapsedInFloat -= Time.deltaTime;
+        //_dyingTimerText.text = Mathf.RoundToInt(_timeElapsedInFloat).ToString();
+
     }
-    //fix the energy bar resetting the timer
+    private void ObserveSliderValues()
+    {
+
+    }
+    //observe the sldier values in update
+    //every state at zero gets their own decreasing timer value; if one is fixed but other at zero -- that timer remains active
+    //show separate timer value near every affected slider
 }

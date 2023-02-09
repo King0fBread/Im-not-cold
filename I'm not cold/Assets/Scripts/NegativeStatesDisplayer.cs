@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class NegativeStatesDisplayer : MonoBehaviour
 {
-    [Header("PostProcessing")]
-    [SerializeField] private PostProcessingManager _postProcessingManager;
     [Header("Sliders")]
     [SerializeField] private Slider _heatSlider;
     [SerializeField] private Slider _energySlider;
@@ -18,24 +16,29 @@ public class NegativeStatesDisplayer : MonoBehaviour
     [SerializeField] private GameObject _hungerShortageState;
     [SerializeField] private GameObject _mentalShortageState;
 
+    public float _heatValue { get; private set; }
+    public float _energyValue { get; private set; }
+    public float _hungerValue { get; private set; }
+    public float _mentalValue { get; private set; }
+
     private void Update()
     {
-        ObserveSliderAndActivateState(_heatSlider, _heatShortageState);
-        ObserveSliderAndActivateState(_energySlider, _energyShortageState);
-        ObserveSliderAndActivateState(_hungerSlider, _hungerShortageState);
-        ObserveSliderAndActivateState(_mentalSlider, _mentalShortageState);
+        _heatValue = _heatSlider.value;
+        _energyValue = _energySlider.value;
+        _hungerValue = _hungerSlider.value;
+        _mentalValue = _mentalSlider.value;
     }
-    private void ObserveSliderAndActivateState(Slider slider, GameObject stateIcon)
-    {
-        if (slider.value <= 0 && !stateIcon.activeSelf)
-        {
-            stateIcon.SetActive(true);
-            _postProcessingManager.playerCloseToDying = true;
-        }
-        else if (slider.value > 0 && stateIcon.activeSelf)
-        {
-            stateIcon.SetActive(false);
-            _postProcessingManager.playerCloseToDying = false;
-        }
-    }
+    //private void ObserveSliderAndActivateState(Slider slider, GameObject stateIcon)
+    //{
+    //    if (slider.value <= 0 && !stateIcon.activeSelf)
+    //    {
+    //        stateIcon.SetActive(true);
+    //        _postProcessingManager.playerCloseToDying = true;
+    //    }
+    //    else if (slider.value > 0 && stateIcon.activeSelf)
+    //    {
+    //        stateIcon.SetActive(false);
+    //        _postProcessingManager.playerCloseToDying = false;
+    //    }
+    //}
 }

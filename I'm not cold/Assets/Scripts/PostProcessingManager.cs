@@ -13,7 +13,6 @@ public class PostProcessingManager : MonoBehaviour
     public bool playerCloseToDying { get; set; }
     private ChromaticAberration _chromaticAberration;
     private LensDistortion _lensDistortion;
-    private bool _deathCountdownIsOn = false;
     private void Awake()
     {
         _globalPPVolume.profile.TryGet(out _chromaticAberration);
@@ -31,8 +30,6 @@ public class PostProcessingManager : MonoBehaviour
             _chromaticAberration.intensity.value -= _chromaticAberrationChangingRate * Time.deltaTime;
             _lensDistortion.intensity.value += _lensDistortionChangingRate * Time.deltaTime;
         }
-
-        ObserveDyingState();
     }
     private bool PostProcessingValuesAtMax()
     {
@@ -42,17 +39,15 @@ public class PostProcessingManager : MonoBehaviour
     {
         return _chromaticAberration.intensity.value == 0f && _lensDistortion.intensity.value >= 0f;
     }
-    private void ObserveDyingState()
-    {
-        if (playerCloseToDying && !_deathCountdownIsOn)
-        {
-            _dyingAndResettingLogic.InitiateDying();
-            _deathCountdownIsOn = true;
-        }
-        else if (!playerCloseToDying && _deathCountdownIsOn)
-        {
-            _dyingAndResettingLogic.CancelDying();
-            _deathCountdownIsOn = false;
-        }
-    }
+    //private void ObserveDyingState()
+    //{
+    //    if (playerCloseToDying)
+    //    {
+    //        _dyingAndResettingLogic.InitiateDying();
+    //    }
+    //    else if (!playerCloseToDying)
+    //    {
+    //        _dyingAndResettingLogic.CancelDying();
+    //    }
+    //}
 }
