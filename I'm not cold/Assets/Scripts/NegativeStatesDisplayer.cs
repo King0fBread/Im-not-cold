@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,17 +17,30 @@ public class NegativeStatesDisplayer : MonoBehaviour
     [SerializeField] private GameObject _hungerShortageState;
     [SerializeField] private GameObject _mentalShortageState;
 
-    public float _heatValue { get; private set; }
-    public float _energyValue { get; private set; }
-    public float _hungerValue { get; private set; }
-    public float _mentalValue { get; private set; }
+    public event EventHandler OnHeatSliderZero;
+    public event EventHandler OnEnergySliderZero;
+    public event EventHandler OnHungerSliderZero;
+    public event EventHandler OnMentalSliderZero;
+
 
     private void Update()
     {
-        _heatValue = _heatSlider.value;
-        _energyValue = _energySlider.value;
-        _hungerValue = _hungerSlider.value;
-        _mentalValue = _mentalSlider.value;
+        if (_heatSlider.value <= 0)
+        {
+            OnHeatSliderZero?.Invoke(this, EventArgs.Empty);
+        }
+        if(_energySlider.value <= 0)
+        {
+            OnEnergySliderZero?.Invoke(this, EventArgs.Empty);
+        }
+        if(_hungerSlider.value <= 0)
+        {
+            OnHungerSliderZero?.Invoke(this, EventArgs.Empty);
+        }
+        if(_mentalSlider.value <= 0)
+        {
+            OnMentalSliderZero?.Invoke(this, EventArgs.Empty);
+        }
     }
     //private void ObserveSliderAndActivateState(Slider slider, GameObject stateIcon)
     //{

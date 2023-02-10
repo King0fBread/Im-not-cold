@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,9 +24,18 @@ public class DyingAndResettingLogic : MonoBehaviour
         _timeElapsedInFloatForEnergy = _deathCountdownDefaultTimerValue;
         _timeElapsedInFloatForHunger = _deathCountdownDefaultTimerValue;
         _timeElapsedInFloatForMental = _deathCountdownDefaultTimerValue;
+
+        _negativeStatesDisplayer.OnHeatSliderZero += BeginDeathCountdownHeat;
+        _negativeStatesDisplayer.OnEnergySliderZero += BeginDeathCountdownEnergy;
+        _negativeStatesDisplayer.OnHungerSliderZero += BeginDeathCountdownHunger;
+        _negativeStatesDisplayer.OnMentalSliderZero += BeginDeathCountdownMental;
     }
     private void Update()
     {
+       
+
+
+
         //if (!_timerRequested)
         //    return;
 
@@ -33,7 +43,19 @@ public class DyingAndResettingLogic : MonoBehaviour
         //_dyingTimerText.text = Mathf.RoundToInt(_timeElapsedInFloat).ToString();
 
     }
-    private void ObserveSliderValues()
+    private void BeginDeathCountdownHeat(object sender, EventArgs e)
+    {
+
+    }
+    private void BeginDeathCountdownEnergy(object sender, EventArgs e)
+    {
+        print("zero energy");
+    }
+    private void BeginDeathCountdownHunger(object sender, EventArgs e)
+    {
+
+    }
+    private void BeginDeathCountdownMental(object sender, EventArgs e)
     {
 
     }
