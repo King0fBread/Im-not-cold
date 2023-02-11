@@ -17,42 +17,22 @@ public class NegativeStatesDisplayer : MonoBehaviour
     [SerializeField] private GameObject _hungerShortageState;
     [SerializeField] private GameObject _mentalShortageState;
 
-    public event EventHandler OnHeatSliderZero;
-    public event EventHandler OnEnergySliderZero;
-    public event EventHandler OnHungerSliderZero;
-    public event EventHandler OnMentalSliderZero;
-
-
     private void Update()
     {
-        if (_heatSlider.value <= 0)
+        ObserveSliderAndActivateState(_heatSlider, _heatShortageState);
+        ObserveSliderAndActivateState(_energySlider, _energyShortageState);
+        ObserveSliderAndActivateState(_hungerSlider, _hungerShortageState);
+        ObserveSliderAndActivateState(_mentalSlider, _mentalShortageState);
+    }
+    private void ObserveSliderAndActivateState(Slider slider, GameObject stateIcon)
+    {
+        if (slider.value <= 0 && !stateIcon.activeSelf)
         {
-            OnHeatSliderZero?.Invoke(this, EventArgs.Empty);
+            stateIcon.SetActive(true);
         }
-        if(_energySlider.value <= 0)
+        else if (slider.value > 0 && stateIcon.activeSelf)
         {
-            OnEnergySliderZero?.Invoke(this, EventArgs.Empty);
-        }
-        if(_hungerSlider.value <= 0)
-        {
-            OnHungerSliderZero?.Invoke(this, EventArgs.Empty);
-        }
-        if(_mentalSlider.value <= 0)
-        {
-            OnMentalSliderZero?.Invoke(this, EventArgs.Empty);
+            stateIcon.SetActive(false);
         }
     }
-    //private void ObserveSliderAndActivateState(Slider slider, GameObject stateIcon)
-    //{
-    //    if (slider.value <= 0 && !stateIcon.activeSelf)
-    //    {
-    //        stateIcon.SetActive(true);
-    //        _postProcessingManager.playerCloseToDying = true;
-    //    }
-    //    else if (slider.value > 0 && stateIcon.activeSelf)
-    //    {
-    //        stateIcon.SetActive(false);
-    //        _postProcessingManager.playerCloseToDying = false;
-    //    }
-    //}
 }

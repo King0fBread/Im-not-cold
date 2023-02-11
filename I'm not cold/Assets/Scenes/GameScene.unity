@@ -1482,8 +1482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced1aa7523875e64da253d9d149c4e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _postProcessingManager: {fileID: 0}
-  _negativeStatesDisplayer: {fileID: 0}
+  _postProcessingManager: {fileID: 441305268}
+  _negativeStatesDisplayer: {fileID: 216523996}
   _deathCountdownDefaultTimerValue: 0
   _dyingTimerText: {fileID: 1898288731}
 --- !u!1 &330585543
