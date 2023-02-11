@@ -9,7 +9,7 @@ public class DyingAndResettingLogic : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PostProcessingManager _postProcessingManager;
-    [SerializeField] private SlidersEventsManager _negativeStatesDisplayer;
+    [SerializeField] private SlidersEventsManager _sliderEventsManager;
     [Header("Dying Logic")]
     [SerializeField] private TextMeshProUGUI _heatTimer;
     [SerializeField] private TextMeshProUGUI _energyTimer;
@@ -17,7 +17,6 @@ public class DyingAndResettingLogic : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _mentalTimer;
 
     [SerializeField] private int _deathCountdownDefaultTimerValue;
-    [SerializeField] private TextMeshProUGUI _dyingTimerText;
 
     private float _timeElapsedInFloatForHeat;
     private float _timeElapsedInFloatForEnergy;
@@ -35,23 +34,43 @@ public class DyingAndResettingLogic : MonoBehaviour
         _timeElapsedInFloatForHunger = _deathCountdownDefaultTimerValue;
         _timeElapsedInFloatForMental = _deathCountdownDefaultTimerValue;
 
-        _negativeStatesDisplayer.OnHeatSliderZero += BeginDeathCountdownHeat;
-        _negativeStatesDisplayer.OnEnergySliderZero += BeginDeathCountdownEnergy;
-        _negativeStatesDisplayer.OnHungerSliderZero += BeginDeathCountdownHunger;
-        _negativeStatesDisplayer.OnMentalSliderZero += BeginDeathCountdownMental;
+        _sliderEventsManager.OnHeatSliderZero += BeginDeathCountdownHeat;
+        _sliderEventsManager.OnEnergySliderZero += BeginDeathCountdownEnergy;
+        _sliderEventsManager.OnHungerSliderZero += BeginDeathCountdownHunger;
+        _sliderEventsManager.OnMentalSliderZero += BeginDeathCountdownMental;
     }
     private void Update()
     {
-       
-
-
-
-        //if (!_timerRequested)
-        //    return;
-
-        //_timeElapsedInFloat -= Time.deltaTime;
-        //_dyingTimerText.text = Mathf.RoundToInt(_timeElapsedInFloat).ToString();
-
+        ManageTimerLogic(_deathTimerRequestedHeat, _timeElapsedInFloatForHeat, _heatTimer);
+        ManageTimerLogic(_deathTimerRequestedEnegry, _timeElapsedInFloatForEnergy, _energyTimer);
+        ManageTimerLogic(_deathTimerRequestedHunger, _timeElapsedInFloatForHunger, _hungerTimer);
+        ManageTimerLogic(_deathTimerRequestedMental, _timeElapsedInFloatForMental, _mentalTimer);
+    }
+    private void ManageTimerLogic(bool isTimerRequested, float elapsedTime, TextMeshProUGUI timerText)
+    {
+        if (isTimerRequested)
+        {
+            DecreaseTimer(elapsedTime, timerText);
+            _postProcessingManager.playerCloseToDying = true;
+        }
+        else if(!isTimerRequested && elapsedTime != _deathCountdownDefaultTimerValue)
+        {
+            elapsedTime = _deathCountdownDefaultTimerValue;
+            timerText.text = "";
+            _postProcessingManager.playerCloseToDying = false;
+            print("reset timer");
+        }
+    }
+    private float DecreaseTimer(float timerValue, TextMeshProUGUI timerText)
+    {
+        timerValue -= Time.deltaTime;
+        timerText.text = Mathf.RoundToInt(timerValue).ToString();
+        if(timerValue < 0)
+        {
+            timerValue = 0;
+            print("died");
+        }
+        return timerValue;
     }
     private void BeginDeathCountdownHeat(object sender, EventArgs e)
     {
