@@ -29,6 +29,11 @@ public class DyingAndResettingLogic : MonoBehaviour
     private bool _deathTimerRequestedMental;
     private void Awake()
     {
+        _heatTimer.text = "";
+        _energyTimer.text = "";
+        _hungerTimer.text = "";
+        _mentalTimer.text = "";
+
         _timeElapsedInFloatForHeat = _deathCountdownDefaultTimerValue;
         _timeElapsedInFloatForEnergy = _deathCountdownDefaultTimerValue;
         _timeElapsedInFloatForHunger = _deathCountdownDefaultTimerValue;
@@ -38,28 +43,33 @@ public class DyingAndResettingLogic : MonoBehaviour
         _sliderEventsManager.OnEnergySliderZero += BeginDeathCountdownEnergy;
         _sliderEventsManager.OnHungerSliderZero += BeginDeathCountdownHunger;
         _sliderEventsManager.OnMentalSliderZero += BeginDeathCountdownMental;
+
+        _sliderEventsManager.OnHeatSliderPositiveValue += CancelDeathCountdownHeat;
+        _sliderEventsManager.OnEnergySliderPositiveValue += CancelDeathCountdownEnergy;
+        _sliderEventsManager.OnHungerSliderPositiveValue += CancelDeathCountdownHunger;
+        _sliderEventsManager.OnMentalSliderPositive += CancelDeathCountdownMental;
     }
     private void Update()
     {
-        ManageTimerLogic(_deathTimerRequestedHeat, _timeElapsedInFloatForHeat, _heatTimer);
-        ManageTimerLogic(_deathTimerRequestedEnegry, _timeElapsedInFloatForEnergy, _energyTimer);
-        ManageTimerLogic(_deathTimerRequestedHunger, _timeElapsedInFloatForHunger, _hungerTimer);
-        ManageTimerLogic(_deathTimerRequestedMental, _timeElapsedInFloatForMental, _mentalTimer);
+        _timeElapsedInFloatForHeat = ManageTimerLogic(_deathTimerRequestedHeat, _timeElapsedInFloatForHeat, _heatTimer);
+        _timeElapsedInFloatForEnergy = ManageTimerLogic(_deathTimerRequestedEnegry, _timeElapsedInFloatForEnergy, _energyTimer);
+        _timeElapsedInFloatForHunger = ManageTimerLogic(_deathTimerRequestedHunger, _timeElapsedInFloatForHunger, _hungerTimer);
+        _timeElapsedInFloatForMental = ManageTimerLogic(_deathTimerRequestedMental, _timeElapsedInFloatForMental, _mentalTimer);
     }
-    private void ManageTimerLogic(bool isTimerRequested, float elapsedTime, TextMeshProUGUI timerText)
+    private float ManageTimerLogic(bool isTimerRequested, float elapsedTime, TextMeshProUGUI timerText)
     {
         if (isTimerRequested)
         {
-            DecreaseTimer(elapsedTime, timerText);
             _postProcessingManager.playerCloseToDying = true;
+            return DecreaseTimer(elapsedTime, timerText);
         }
         else if(!isTimerRequested && elapsedTime != _deathCountdownDefaultTimerValue)
         {
-            elapsedTime = _deathCountdownDefaultTimerValue;
             timerText.text = "";
             _postProcessingManager.playerCloseToDying = false;
-            print("reset timer");
+            return _deathCountdownDefaultTimerValue;
         }
+        return _deathCountdownDefaultTimerValue;
     }
     private float DecreaseTimer(float timerValue, TextMeshProUGUI timerText)
     {
@@ -68,7 +78,7 @@ public class DyingAndResettingLogic : MonoBehaviour
         if(timerValue < 0)
         {
             timerValue = 0;
-            print("died");
+            Time.timeScale = 0;
         }
         return timerValue;
     }
