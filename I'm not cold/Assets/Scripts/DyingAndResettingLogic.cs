@@ -10,12 +10,12 @@ public class DyingAndResettingLogic : MonoBehaviour
     [Header("References")]
     [SerializeField] private PostProcessingManager _postProcessingManager;
     [SerializeField] private SlidersEventsManager _sliderEventsManager;
+    [SerializeField] private GameObject _deathScreen;
     [Header("Dying Logic")]
     [SerializeField] private TextMeshProUGUI _heatTimer;
     [SerializeField] private TextMeshProUGUI _energyTimer;
     [SerializeField] private TextMeshProUGUI _hungerTimer;
     [SerializeField] private TextMeshProUGUI _mentalTimer;
-
     [SerializeField] private int _deathCountdownDefaultTimerValue;
 
     private float _timeElapsedInFloatForHeat;
@@ -78,7 +78,7 @@ public class DyingAndResettingLogic : MonoBehaviour
         if(timerValue < 0)
         {
             timerValue = 0;
-            Time.timeScale = 0;
+            ResetGameScene();
         }
         return timerValue;
     }
@@ -122,7 +122,9 @@ public class DyingAndResettingLogic : MonoBehaviour
         if (_deathTimerRequestedMental)
             _deathTimerRequestedMental = false;
     }
-    //observe the sldier values in update
-    //every state at zero gets their own decreasing timer value; if one is fixed but other at zero -- that timer remains active
-    //show separate timer value near every affected slider
+    public void ResetGameScene()
+    {
+        _deathScreen.SetActive(true);
+        Time.timeScale = 0;
+    }
 }

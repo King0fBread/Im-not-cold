@@ -7,11 +7,12 @@ public class SirenPoleLogic : MonoBehaviour
     public bool activatedInCorrectTime { get; set; }
     public void ActivateAlarm()
     {
-        print("sounds wow");
+        //alarm sounds
         if (activatedInCorrectTime)
         {
-            //win
-            print("winning");
+            //helicopter closing in
+            //coroutine for waiting
+            
         }
         else
         {
