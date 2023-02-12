@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class DyingAndResettingLogic : MonoBehaviour
@@ -125,6 +124,7 @@ public class DyingAndResettingLogic : MonoBehaviour
     public void ResetGameScene()
     {
         _deathScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
     }
 }
