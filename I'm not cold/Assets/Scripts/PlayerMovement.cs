@@ -99,4 +99,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    private void OnDisable()
+    {
+        playerInputActions.Player.Jumping.performed -= Jump;
+    }
 }

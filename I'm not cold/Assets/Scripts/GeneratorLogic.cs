@@ -47,7 +47,8 @@ public class GeneratorLogic : MonoBehaviour
     }
     private void OnDestroy()
     {
-        _mosueInteractionIcon.SetActive(false);
+        if(_mosueInteractionIcon != null)
+            _mosueInteractionIcon.SetActive(false);
     }
     private bool CheckIfHoldingFuel()
     {

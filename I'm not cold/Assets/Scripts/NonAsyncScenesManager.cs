@@ -7,6 +7,7 @@ public class NonAsyncScenesManager : MonoBehaviour
 {
     public void NonAsyncLoadGameScene()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("GameScene");
     }
     public void NonAsyncLoadMenuScene()

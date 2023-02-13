@@ -33,7 +33,7 @@ public class PostProcessingManager : MonoBehaviour
     }
     private bool PostProcessingValuesAtMax()
     {
-        return _chromaticAberration.intensity.value == 1f && _lensDistortion.intensity.value <= -0.5f;
+        return _chromaticAberration.intensity.value == 1f && _lensDistortion.intensity.value <= -0.6f;
     }
     private bool PostProcessingValuesAtMin()
     {

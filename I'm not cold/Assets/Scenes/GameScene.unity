@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.43867922, g: 0.6786164, b: 1, a: 0.007843138}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.4392157, g: 0.68235296, b: 1, a: 0.007843138}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2741,7 +2741,7 @@ MonoBehaviour:
   _dyingAndResettingLogic: {fileID: 324516310}
   _globalPPVolume: {fileID: 832575518}
   _chromaticAberrationChangingRate: 0.1
-  _lensDistortionChangingRate: 0.05
+  _lensDistortionChangingRate: 0.08
 --- !u!4 &441305269
 Transform:
   m_ObjectHideFlags: 0

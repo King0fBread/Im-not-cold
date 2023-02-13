@@ -29,7 +29,7 @@ public class ClockCycle : MonoBehaviour
 
         _currentDayTime += Time.deltaTime / REAL_SECONDS_TO_GAME_DAY_RATIO;
 
-        if(_dayNormalized * _possibleHoursPerDay >= 6.5 && _dayNormalized * _possibleHoursPerDay  <= 7)
+        if(_dayNormalized * _possibleHoursPerDay >= 4.5f && _dayNormalized * _possibleHoursPerDay  <= 5f)
         {
             _sirenPoleLogic.activatedInCorrectTime = true;
         }
