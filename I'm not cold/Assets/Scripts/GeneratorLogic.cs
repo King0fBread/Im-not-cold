@@ -8,8 +8,13 @@ public class GeneratorLogic : MonoBehaviour
     [SerializeField] private GameObject _mosueInteractionIcon;
     [SerializeField] private PlayerPickAndDropItems _playerPickAndDropItems;
     [SerializeField] private SirenPoleLogic _sirenPoleLogic;
+    private Animator _animator;
     private float _interactableDistance = 1f;
     private bool _fuelIsInGenerator = false;
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
     private void OnMouseOver()
     {
         if (!CheckDistance())
@@ -40,6 +45,7 @@ public class GeneratorLogic : MonoBehaviour
             }
             else if(_fuelIsInGenerator)
             {
+                _animator.Play("GeneratorShaking");
                 _sirenPoleLogic.ActivateAlarm();
                 Destroy(gameObject.GetComponent<GeneratorLogic>());
             }
