@@ -6,7 +6,7 @@ public class GramophoneLogic : MonoBehaviour
 {
     [SerializeField] private GameObject _mouseSelectionIcon;
     [SerializeField] private Transform _playerTransform;
-    private float _interactableValue = 0.7f;
+    private float _interactableValue = 0.9f;
     private bool _gramophoneActive = false;
     private void OnMouseOver()
     {
@@ -19,7 +19,17 @@ public class GramophoneLogic : MonoBehaviour
     {
         if (!CheckInteractableDistance())
             return;
-        print("music");
+
+        if (!_gramophoneActive)
+        {
+            print("music on");
+            _gramophoneActive = true;
+        }
+        else if (_gramophoneActive)
+        {
+            print("music off");
+            _gramophoneActive = false;
+        }
     }
     private void OnMouseExit()
     {
