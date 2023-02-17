@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         RotateCamera();
-        PlayPlayerMovementSounds();
     }
     private void Jump(InputAction.CallbackContext context)
     {
@@ -58,15 +57,30 @@ public class PlayerMovement : MonoBehaviour
         _inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
         _moveDirection = _orientationObjectTransform.forward * _inputVector.y + _orientationObjectTransform.right * _inputVector.x;
         SendMovementInfoToEnergyCounter();
+        if(_inputVector == Vector2.zero)
+        {
+            StopAllWalkingSounds();
+            StopAllRunningSounds();
+        }
 
         if (_isRunning)
         {
-            _playerRigidbody.AddForce(_moveDirection.normalized * _runningSpeed * Time.deltaTime, ForceMode.Force);
+            SetSpeedToRunning();
+            PlayCorrectRunningSound();
         }
         else
         {
-            _playerRigidbody.AddForce(_moveDirection.normalized * _walkingSpeed * Time.deltaTime, ForceMode.Force);
+            SetSpeedToWalking();
+            PlayCorrectWalkingSound();
         }
+    }
+    private void SetSpeedToWalking()
+    {
+        _playerRigidbody.AddForce(_moveDirection.normalized * _walkingSpeed * Time.deltaTime, ForceMode.Force);
+    }
+    private void SetSpeedToRunning()
+    {
+        _playerRigidbody.AddForce(_moveDirection.normalized * _runningSpeed * Time.deltaTime, ForceMode.Force);
     }
     private void RotateCamera()
     {
@@ -104,22 +118,9 @@ public class PlayerMovement : MonoBehaviour
             SurvivalStatesManager.instance.playerHasJumped = true;
         }
     }
-    private void PlayPlayerMovementSounds()
-    {
-        if (_inputVector == Vector2.zero)
-            return;
-
-        if (!_isRunning)
-        {
-            PlayCorrectWalkingSound();
-        }
-        else
-        {
-            PlayCorrectRunningSound();
-        }
-    }
     private void PlayCorrectWalkingSound()
     {
+        StopAllRunningSounds();
         if (_groundTypeCheck.isPlayerInside)
         {
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerWalkingWood);
@@ -131,8 +132,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void PlayCorrectRunningSound()
     {
+        StopAllWalkingSounds();
         if (_groundTypeCheck.isPlayerInside)
         {
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingWood);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerRunningWood);
         }
         else

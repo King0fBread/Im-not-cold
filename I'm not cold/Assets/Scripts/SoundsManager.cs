@@ -40,6 +40,7 @@ public class SoundsManager : MonoBehaviour
         PlayerWalkingSnow,
         PlayerWalkingSoft,
         PlayerWalkingWood,
+        GramophoneMusic,
     }
     public void PlaySound(Sounds sound)
     {

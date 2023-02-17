@@ -22,12 +22,12 @@ public class GramophoneLogic : MonoBehaviour
 
         if (!_gramophoneActive)
         {
-            print("music on");
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.GramophoneMusic);
             _gramophoneActive = true;
         }
         else if (_gramophoneActive)
         {
-            print("music off");
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.GramophoneMusic);
             _gramophoneActive = false;
         }
     }
