@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerInputActions playerInputActions;
     [Header("Movement")]
     [SerializeField] private float _walkingSpeed;
     [SerializeField] private float _runningSpeed;
@@ -23,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     private float _rotationSensitivityY = 100f;
     [Header("Jumping")]
     [SerializeField] private float _jumpStrength;
+    
+    
+    private PlayerInputActions playerInputActions;
+    private GroundTypeCheck _groundTypeCheck;
     public bool isGrounded { get; set; }
     private void Awake()
     {
@@ -32,12 +35,15 @@ public class PlayerMovement : MonoBehaviour
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jumping.performed += Jump;
 
+        _groundTypeCheck = GetComponent<GroundTypeCheck>();
+
         Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {
         Move();
         RotateCamera();
+        PlayPlayerMovementSounds();
     }
     private void Jump(InputAction.CallbackContext context)
     {
@@ -97,7 +103,52 @@ public class PlayerMovement : MonoBehaviour
         {
             SurvivalStatesManager.instance.playerHasJumped = true;
         }
+    }
+    private void PlayPlayerMovementSounds()
+    {
+        if (_inputVector == Vector2.zero)
+            return;
 
+        if (!_isRunning)
+        {
+            PlayCorrectWalkingSound();
+        }
+        else
+        {
+            PlayCorrectRunningSound();
+        }
+    }
+    private void PlayCorrectWalkingSound()
+    {
+        if (_groundTypeCheck.isPlayerInside)
+        {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerWalkingWood);
+        }
+        else
+        {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerWalkingSnow);
+        }
+    }
+    private void PlayCorrectRunningSound()
+    {
+        if (_groundTypeCheck.isPlayerInside)
+        {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerRunningWood);
+        }
+        else
+        {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerRunningSnow);
+        }
+    }
+    private void StopAllWalkingSounds()
+    {
+        SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingWood);
+        SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingSnow);
+    }
+    private void StopAllRunningSounds()
+    {
+        SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerRunningWood);
+        SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerRunningSnow);
     }
     private void OnDisable()
     {

@@ -3722,6 +3722,7 @@ MonoBehaviour:
   _cameraTransform: {fileID: 1081371951}
   _orientationObjectTransform: {fileID: 1797141435}
   _jumpStrength: 3.1
+  _groundTypeCheck: {fileID: 0}
 --- !u!54 &558040693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15947,7 +15948,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterMixer: {fileID: 24100000, guid: ce18f44d291c27e47b53db5c4e93c067, type: 2}
-  audioClipsAndSourcePairedToSounds: []
+  audioClipsAndSourcePairedToSounds:
+  - sound: 0
+    clip: {fileID: 8300000, guid: 722f17701fabc0d469a07d0ff47ebae0, type: 3}
+    source: {fileID: 558040703}
+  - sound: 4
+    clip: {fileID: 8300000, guid: 6f22cbd9b7eb2ec47b9837b7b93c746a, type: 3}
+    source: {fileID: 558040703}
+  - sound: 5
+    clip: {fileID: 8300000, guid: a0ef13c823ea94d448900317df3c1bb9, type: 3}
+    source: {fileID: 558040703}
+  - sound: 1
+    clip: {fileID: 8300000, guid: a999e75cf34aa154ba126c74f680ec82, type: 3}
+    source: {fileID: 558040703}
+  - sound: 3
+    clip: {fileID: 8300000, guid: 9f124bdefed68f744b6fada24998091a, type: 3}
+    source: {fileID: 558040703}
+  - sound: 7
+    clip: {fileID: 8300000, guid: 96302e5aed6cde746b4339dce4e8a7ce, type: 3}
+    source: {fileID: 558040703}
+  - sound: 2
+    clip: {fileID: 8300000, guid: 4b8cf9bd61a611d46a813b77f3e3e6d5, type: 3}
+    source: {fileID: 558040703}
+  - sound: 6
+    clip: {fileID: 8300000, guid: 425b5f7fe0110b8449f8e558c1fe7c2c, type: 3}
+    source: {fileID: 558040703}
 --- !u!1 &1797141434
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,8 +17,8 @@ public class SoundsManager : MonoBehaviour
         public AudioSource source;
     }
 
-    private SoundsManager _instance;
-    public SoundsManager instance { get { return _instance; } }
+    private static SoundsManager _instance;
+    public static SoundsManager instance { get { return _instance; } }
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -36,11 +36,12 @@ public class SoundsManager : MonoBehaviour
         PlayerJumpingWood,
         PlayerPickUpItem,
         PlayerRunningWood,
+        PlayerRunningSnow,
         PlayerWalkingSnow,
         PlayerWalkingSoft,
         PlayerWalkingWood,
     }
-    private void PlaySound(Sounds sound)
+    public void PlaySound(Sounds sound)
     {
         GetRequestedAudioClipAndAudioSource(sound, out _clip, out _source);
         if (!_source.isPlaying)
@@ -48,7 +49,7 @@ public class SoundsManager : MonoBehaviour
             _source.PlayOneShot(_clip);
         }
     }
-    private void StopSound(Sounds sound)
+    public void StopSound(Sounds sound)
     {
         GetRequestedAudioClipAndAudioSource(sound, out _clip, out _source);
         if (_source.isPlaying)
