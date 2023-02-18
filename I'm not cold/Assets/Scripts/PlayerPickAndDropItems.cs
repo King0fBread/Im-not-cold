@@ -40,6 +40,8 @@ public class PlayerPickAndDropItems : MonoBehaviour
             Physics.IgnoreCollision(_playerCollider, _grabbedCollider, true);
 
             InventoryObserver.currentInventoryItem = _grabableObject.gameObject;
+
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerPickUpItem);
         }
     }
     private void DropObject()

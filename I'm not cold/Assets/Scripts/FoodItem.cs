@@ -21,6 +21,7 @@ public class FoodItem : MonoBehaviour
             SurvivalStatesManager.instance.IncreaseHungerValueFromEating();
             SurvivalStatesManager.instance.IncreaseEnergyValueFromEating();
             SurvivalStatesManager.instance.IncreaseMentalValueFromEating();
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerAteCannedFood);
             _foodSelectionIcon.SetActive(false);
             SpawnEmptyCan();
             Destroy(gameObject);

@@ -38,8 +38,13 @@ public class SoundsManager : MonoBehaviour
         PlayerRunningWood,
         PlayerRunningSnow,
         PlayerWalkingSnow,
-        PlayerWalkingSoft,
         PlayerWalkingWood,
+        PlayerTouchedWood,
+        PlayerTouchedMetal,
+        PlayerAteSnack,
+        PlayerAteCannedFood,
+        FurnaceBurning,
+        FurnaceAddedFuel,
         GramophoneMusic,
     }
     public void PlaySound(Sounds sound)

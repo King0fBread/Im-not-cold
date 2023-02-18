@@ -26,6 +26,7 @@ public class FurnaceLogic : MonoBehaviour
         _heatSlider.value = _currentHeatValue;
         if (_currentHeatValue > 0)
         {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.FurnaceBurning);
             if (isFrontDoorOpen)
             {
                 _currentHeatValue -= _passiveRapidDecreasingValue * Time.deltaTime;
@@ -37,8 +38,8 @@ public class FurnaceLogic : MonoBehaviour
         }
         else if(_currentHeatValue <= 0)
         {
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.FurnaceBurning);
             _currentHeatValue = 0;
-            //pp
         }
     }
     private void ControlParticles()
@@ -70,6 +71,8 @@ public class FurnaceLogic : MonoBehaviour
     {
         if (CheckInteractableDistance() && _canBurnItem)
         {
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.FurnaceAddedFuel);
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.FurnaceAddedFuel);
             _currentHeatValue += _currentItem.burningValue;
             if (_currentHeatValue > 1)
                 _currentHeatValue = 1;

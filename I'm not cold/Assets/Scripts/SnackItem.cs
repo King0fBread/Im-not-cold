@@ -20,6 +20,7 @@ public class SnackItem : MonoBehaviour
             _snackSelectionIcon.SetActive(false);
             SurvivalStatesManager.instance.IncreaseMentalValueFromSnacking();
             SurvivalStatesManager.instance.IncreaseHungerValueFromSnacking();
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerAteSnack);
             Destroy(gameObject);
         }
     }
