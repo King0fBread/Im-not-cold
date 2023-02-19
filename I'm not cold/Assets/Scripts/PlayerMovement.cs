@@ -123,10 +123,12 @@ public class PlayerMovement : MonoBehaviour
         StopAllRunningSounds();
         if (_groundTypeCheck.playerWalkingOnWood)
         {
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingSnow);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerWalkingWood);
         }
         else
         {
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingWood);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerWalkingSnow);
         }
     }
@@ -135,11 +137,12 @@ public class PlayerMovement : MonoBehaviour
         StopAllWalkingSounds();
         if (_groundTypeCheck.playerWalkingOnWood)
         {
-            SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingWood);
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerRunningSnow);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerRunningWood);
         }
         else
         {
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerRunningWood);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerRunningSnow);
         }
     }
