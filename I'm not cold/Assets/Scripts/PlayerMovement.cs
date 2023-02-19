@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     private void PlayCorrectWalkingSound()
     {
         StopAllRunningSounds();
-        if (_groundTypeCheck.isPlayerInside)
+        if (_groundTypeCheck.playerWalkingOnWood)
         {
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerWalkingWood);
         }
@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
     private void PlayCorrectRunningSound()
     {
         StopAllWalkingSounds();
-        if (_groundTypeCheck.isPlayerInside)
+        if (_groundTypeCheck.playerWalkingOnWood)
         {
             SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingWood);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerRunningWood);
