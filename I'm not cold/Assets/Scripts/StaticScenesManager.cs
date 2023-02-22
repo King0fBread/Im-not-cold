@@ -17,7 +17,7 @@ public static class StaticScenesManager
     {
         OnLoaderCallback = () =>
         {
-            SceneManager.LoadScene(sceneToLoad.ToString());
+            SceneManager.LoadSceneAsync(sceneToLoad.ToString());
         };
         SceneManager.LoadScene(Scenes.LoadingScene.ToString());
     }
