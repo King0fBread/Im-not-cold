@@ -5,6 +5,7 @@ using UnityEngine;
 public class SirenPoleLogic : MonoBehaviour
 {
     public bool activatedInCorrectTime { get; set; }
+    public bool sirenPoleWorking { get; set; }
     public void ActivateAlarm()
     {
         //alarm sounds
@@ -18,6 +19,14 @@ public class SirenPoleLogic : MonoBehaviour
         {
             //lose
             print("losing");
+        }
+    }
+    private void Update()
+    {
+        if (sirenPoleWorking)
+        {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.GeneratorWorking);
+            //siren
         }
     }
 }

@@ -46,6 +46,9 @@ public class SoundsManager : MonoBehaviour
         FurnaceBurning,
         FurnaceAddedFuel,
         GramophoneMusic,
+        GeneratorAddedFuel,
+        GeneratorButton,
+        GeneratorWorking,
     }
     public void PlaySound(Sounds sound)
     {

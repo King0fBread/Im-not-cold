@@ -41,12 +41,13 @@ public class GeneratorLogic : MonoBehaviour
             {
                 _playerPickAndDropItems.DisposeOfGrabbedObject();
                 _fuelIsInGenerator = true;
-                //sounds
+                SoundsManager.instance.PlaySound(SoundsManager.Sounds.GeneratorAddedFuel);
             }
             else if(_fuelIsInGenerator)
             {
                 _animator.Play("GeneratorShaking");
-                _sirenPoleLogic.ActivateAlarm();
+                _sirenPoleLogic.sirenPoleWorking = true;
+                SoundsManager.instance.PlaySound(SoundsManager.Sounds.GeneratorButton);
                 Destroy(gameObject.GetComponent<GeneratorLogic>());
             }
         }
