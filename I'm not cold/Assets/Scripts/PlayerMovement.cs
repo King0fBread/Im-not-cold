@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         _groundTypeCheck = GetComponent<GroundTypeCheck>();
 
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {
