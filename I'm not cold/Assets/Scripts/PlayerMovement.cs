@@ -17,9 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float _rotationY;
     private float _mouseRotationAlongX;
     private float _mouseRotationAlongY;
-    //make sensitivity public eventually
-    private float _rotationSensitivityX = 100f;
-    private float _rotationSensitivityY = 100f;
+    public float rotationSensitivity { get; set; }
     [Header("Jumping")]
     [SerializeField] private float _jumpStrength;
     
@@ -27,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInputActions playerInputActions;
     private GroundTypeCheck _groundTypeCheck;
     public bool isGrounded { get; set; }
+    public bool canMove = true;
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
@@ -37,12 +36,15 @@ public class PlayerMovement : MonoBehaviour
 
         _groundTypeCheck = GetComponent<GroundTypeCheck>();
 
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {
-        Move();
-        RotateCamera();
+        if (canMove)
+        {
+            Move();
+            RotateCamera();
+        }
     }
     private void Jump(InputAction.CallbackContext context)
     {
@@ -84,8 +86,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void RotateCamera()
     {
-        _mouseRotationAlongX = Input.GetAxis("Mouse X");
-        _mouseRotationAlongY = Input.GetAxis("Mouse Y");
+        _mouseRotationAlongX = Input.GetAxis("Mouse X") * rotationSensitivity;
+        _mouseRotationAlongY = Input.GetAxis("Mouse Y") * rotationSensitivity;
         _rotationX -= _mouseRotationAlongY;
         _rotationY += _mouseRotationAlongX;
         _rotationX = Mathf.Clamp(_rotationX, -80f, 80f);

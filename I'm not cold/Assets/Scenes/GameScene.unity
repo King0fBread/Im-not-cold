@@ -7175,8 +7175,9 @@ GameObject:
   - component: {fileID: 302979611}
   - component: {fileID: 302979613}
   - component: {fileID: 302979612}
+  - component: {fileID: 302979614}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7205,7 +7206,7 @@ RectTransform:
   - {fileID: 1192753745}
   - {fileID: 363974753}
   m_Father: {fileID: 544520769}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7250,6 +7251,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302979610}
   m_CullTransparentMesh: 1
+--- !u!114 &302979614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302979610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7c0baddb1371b4a85f9fe817f6f2e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 558040692}
 --- !u!1 &305098849
 GameObject:
   m_ObjectHideFlags: 0
@@ -7759,6 +7773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363974753}
   - component: {fileID: 363974754}
+  - component: {fileID: 363974755}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -7833,8 +7848,32 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 363974755}
+        m_TargetAssemblyTypeName: SettingsFullscreenManager, Assembly-CSharp
+        m_MethodName: ChangeFullscreenValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &363974755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363974752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32dc7d6d5dff4d046b52dfc8e1c0e56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &365290438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4277821735700584, guid: 0963a7147c11771498e0fcf92de5ee40,
@@ -9105,9 +9144,9 @@ RectTransform:
   - {fileID: 994704101}
   - {fileID: 78625827}
   - {fileID: 1919178060}
-  - {fileID: 2026597987}
   - {fileID: 1255984074}
   - {fileID: 302979611}
+  - {fileID: 2026597987}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9266,6 +9305,7 @@ MonoBehaviour:
   _cameraTransform: {fileID: 1081371951}
   _orientationObjectTransform: {fileID: 1797141435}
   _jumpStrength: 3.1
+  canMove: 1
 --- !u!54 &558040693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12420,7 +12460,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 965455054}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 302979610}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &965455054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14687,6 +14739,7 @@ Transform:
   - {fileID: 185673529}
   - {fileID: 1065873760}
   - {fileID: 1772715679}
+  - {fileID: 1451533631}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14743,6 +14796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1192753745}
   - component: {fileID: 1192753746}
+  - component: {fileID: 1192753747}
   m_Layer: 5
   m_Name: Slider (2)
   m_TagString: Untagged
@@ -14817,13 +14871,38 @@ MonoBehaviour:
   m_FillRect: {fileID: 1270718877}
   m_HandleRect: {fileID: 103565484}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 0.5
+  m_MaxValue: 7
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 4
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1192753747}
+        m_TargetAssemblyTypeName: SettingsSensitivityManager, Assembly-CSharp
+        m_MethodName: ChangeSensitivity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1192753747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192753744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aacf6795a95be04c8b3a6bdfb75e8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 558040692}
 --- !u!4 &1194137855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4158100455432640, guid: 2056c82661e70664495aabe667e7c5af,
@@ -15267,7 +15346,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 544520769}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1266860843
 GameObject:
@@ -15408,7 +15487,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.53846157
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -15772,7 +15851,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37484
+  m_Name: pb_Mesh30290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16987,6 +17066,51 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 64569468972046678, guid: f9914c3a6fab6f649bfce3fb747be8e7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f9914c3a6fab6f649bfce3fb747be8e7, type: 3}
+--- !u!1 &1451533630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451533631}
+  - component: {fileID: 1451533632}
+  m_Layer: 0
+  m_Name: SettingsDisplayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1451533631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451533630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1170754089}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1451533632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451533630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4667d7fb869a0743a6ccca360707917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settingsObject: {fileID: 302979610}
 --- !u!1001 &1451583567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17720,7 +17844,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh37438
+  m_Name: pb_Mesh30232
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22254,11 +22378,11 @@ RectTransform:
   - {fileID: 305098850}
   - {fileID: 87873590}
   m_Father: {fileID: 544520769}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 6, y: -5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2026597988
