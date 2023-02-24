@@ -12,11 +12,12 @@ public class PlayerPickAndDropItems : MonoBehaviour
     private GrabableObject _grabableObject;
     private Collider _grabbedCollider;
     private Collider _playerCollider;
+    private PlayerInputActions _playerInputActions;
     private void Awake()
     {
-        PlayerInputActions playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
-        playerInputActions.Player.InteractionE.performed += PickupOrDropItem;
+        _playerInputActions = new PlayerInputActions();
+        _playerInputActions.Player.Enable();
+        _playerInputActions.Player.InteractionE.performed += PickupOrDropItem;
         _playerCollider = GetComponent<CapsuleCollider>();
     }
     private void PickupOrDropItem(InputAction.CallbackContext context)
@@ -57,5 +58,9 @@ public class PlayerPickAndDropItems : MonoBehaviour
         Destroy(_grabableObject.gameObject);
         _grabableObject = null;
         InventoryObserver.currentInventoryItem = null;
+    }
+    private void OnDestroy()
+    {
+        _playerInputActions.Player.InteractionE.performed -= PickupOrDropItem;
     }
 }
