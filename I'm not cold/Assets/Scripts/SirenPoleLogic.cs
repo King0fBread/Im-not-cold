@@ -25,8 +25,8 @@ public class SirenPoleLogic : MonoBehaviour
     {
         if (sirenPoleWorking)
         {
-            SoundsManager.instance.PlaySound(SoundsManager.Sounds.GeneratorWorking);
-            //siren
+            //SoundsManager.instance.PlaySound(SoundsManager.Sounds.GeneratorWorking);
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.SirenWorking);
         }
     }
 }

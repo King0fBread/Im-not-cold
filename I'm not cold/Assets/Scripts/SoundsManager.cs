@@ -49,6 +49,7 @@ public class SoundsManager : MonoBehaviour
         GeneratorAddedFuel,
         GeneratorButton,
         GeneratorWorking,
+        SirenWorking,
     }
     public void PlaySound(Sounds sound)
     {
