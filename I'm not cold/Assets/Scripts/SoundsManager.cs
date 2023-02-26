@@ -50,6 +50,7 @@ public class SoundsManager : MonoBehaviour
         GeneratorButton,
         GeneratorWorking,
         SirenWorking,
+        HelicopterEvacuation,
     }
     public void PlaySound(Sounds sound)
     {
@@ -80,5 +81,9 @@ public class SoundsManager : MonoBehaviour
                 source = audioClipAndSourcePairedToSound.source;
             }
         }
+    }
+    public void SilenceAllSounds()
+    {
+        _masterMixer.SetFloat("MasterVolume", -60f);
     }
 }
