@@ -44,4 +44,10 @@ public class SirenPoleLogic : MonoBehaviour
         yield return new WaitForSeconds(5f);
         _survivalEndscreen.SetActive(true);
     }
+    private IEnumerator CountdownBeforeLosingCoroutine()
+    {
+        yield return new WaitForSeconds(15f);
+        SoundsManager.instance.StopSound(SoundsManager.Sounds.GeneratorWorking);
+        SoundsManager.instance.StopSound(SoundsManager.Sounds.SirenWorking);
+    }
 }

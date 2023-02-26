@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ee02246d838274a94064a003abc749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleChangeValues: {x: 0.1, y: 0.1, z: 0}
+  _scaleChangeValues: {x: 0.05, y: 0.1, z: 0}
 --- !u!114 &702994899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ee02246d838274a94064a003abc749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleChangeValues: {x: 0.8, y: 0.8, z: 0}
+  _scaleChangeValues: {x: 0.6, y: 0.8, z: 0}
 --- !u!114 &910316384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,7 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ee02246d838274a94064a003abc749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleChangeValues: {x: 0.8, y: 0.8, z: 0}
+  _scaleChangeValues: {x: 0.6, y: 0.8, z: 0}
 --- !u!114 &1474506412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ee02246d838274a94064a003abc749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleChangeValues: {x: 0.8, y: 0.8, z: 0}
+  _scaleChangeValues: {x: 0.6, y: 0.8, z: 0}
 --- !u!114 &1875993452
 MonoBehaviour:
   m_ObjectHideFlags: 0

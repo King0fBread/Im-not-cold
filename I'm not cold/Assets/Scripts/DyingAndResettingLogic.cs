@@ -125,6 +125,7 @@ public class DyingAndResettingLogic : MonoBehaviour
     {
         _deathScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+        SoundsManager.instance.SilenceAllSounds();
         Time.timeScale = 0;
     }
 }
