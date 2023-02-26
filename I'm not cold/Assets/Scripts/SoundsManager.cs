@@ -51,6 +51,8 @@ public class SoundsManager : MonoBehaviour
         GeneratorWorking,
         SirenWorking,
         HelicopterEvacuation,
+        DoorOpening,
+        DoorClosing,
     }
     public void PlaySound(Sounds sound)
     {

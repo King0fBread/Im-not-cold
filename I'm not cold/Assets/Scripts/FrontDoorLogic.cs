@@ -24,12 +24,14 @@ public class FrontDoorLogic : MonoBehaviour
         _doorCurrentlyInMovement = true;
         if (_doorIsClosed)
         {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.DoorOpening);
             _doorAnimator.Play("DoorOpening");
             _doorIsClosed = false;
             _furnaceLogic.isFrontDoorOpen = true;
         }
         else if (!_doorIsClosed)
         {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.DoorClosing);
             _doorAnimator.Play("DoorClosing");
             _doorIsClosed = true;
             _furnaceLogic.isFrontDoorOpen = false;

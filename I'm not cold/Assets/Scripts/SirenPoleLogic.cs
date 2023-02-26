@@ -9,6 +9,7 @@ public class SirenPoleLogic : MonoBehaviour
     [SerializeField] private GameObject _survivalEndscreen;
     [SerializeField] private AudioSource _standaloneEndscreenAudioSource;
     private bool _startedCountdown = false;
+    private bool _enoughFuelForSiren = true;
     public void ActivateAlarm()
     {
         //alarm sounds
@@ -26,7 +27,7 @@ public class SirenPoleLogic : MonoBehaviour
     }
     private void Update()
     {
-        if (sirenPoleWorking)
+        if (sirenPoleWorking && _enoughFuelForSiren)
         {
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.GeneratorWorking);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.SirenWorking);
@@ -47,6 +48,7 @@ public class SirenPoleLogic : MonoBehaviour
     private IEnumerator CountdownBeforeLosingCoroutine()
     {
         yield return new WaitForSeconds(15f);
+        _enoughFuelForSiren = false;
         SoundsManager.instance.StopSound(SoundsManager.Sounds.GeneratorWorking);
         SoundsManager.instance.StopSound(SoundsManager.Sounds.SirenWorking);
     }
