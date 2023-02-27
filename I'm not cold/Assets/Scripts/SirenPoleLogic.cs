@@ -25,6 +25,10 @@ public class SirenPoleLogic : MonoBehaviour
             print("losing");
         }
     }
+    public void CancelEndscreenCountdown()
+    {
+        StopCoroutine(CountdownBeforeEndcreenCoroutine());
+    }
     private void Update()
     {
         if (sirenPoleWorking && _enoughFuelForSiren)

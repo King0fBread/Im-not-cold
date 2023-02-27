@@ -9,6 +9,7 @@ public class DyingAndResettingLogic : MonoBehaviour
     [Header("References")]
     [SerializeField] private PostProcessingManager _postProcessingManager;
     [SerializeField] private SlidersEventsManager _sliderEventsManager;
+    [SerializeField] private SirenPoleLogic _sirenPoleLogic;
     [SerializeField] private GameObject _deathScreen;
     [Header("Dying Logic")]
     [SerializeField] private TextMeshProUGUI _heatTimer;
@@ -77,7 +78,7 @@ public class DyingAndResettingLogic : MonoBehaviour
         if(timerValue < 0)
         {
             timerValue = 0;
-            ResetGameScene();
+            ShowDeathEndscreen();
         }
         return timerValue;
     }
@@ -121,8 +122,12 @@ public class DyingAndResettingLogic : MonoBehaviour
         if (_deathTimerRequestedMental)
             _deathTimerRequestedMental = false;
     }
-    public void ResetGameScene()
+    public void ShowDeathEndscreen()
     {
+        //avoiding accidental winning if dead
+        _sirenPoleLogic.CancelEndscreenCountdown();
+
+        //initiating dying endscreen
         _deathScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         SoundsManager.instance.SilenceAllSounds();
