@@ -31217,6 +31217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _survivalEndscreen: {fileID: 368923771}
   _standaloneEndscreenAudioSource: {fileID: 1066506162}
+  _dyingAndResettingLogic: {fileID: 324516310}
 --- !u!82 &919132149331598320
 AudioSource:
   m_ObjectHideFlags: 0

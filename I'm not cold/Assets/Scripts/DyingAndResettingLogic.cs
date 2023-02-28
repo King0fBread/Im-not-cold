@@ -28,6 +28,7 @@ public class DyingAndResettingLogic : MonoBehaviour
     private bool _deathTimerRequestedEnegry;
     private bool _deathTimerRequestedHunger;
     private bool _deathTimerRequestedMental;
+    public bool canObserveAndExecuteDying { get; set; }
     private void Awake()
     {
         _heatTimer.text = "";
@@ -52,6 +53,9 @@ public class DyingAndResettingLogic : MonoBehaviour
     }
     private void Update()
     {
+        if (!canObserveAndExecuteDying)
+            return;
+
         _timeElapsedInFloatForHeat = ManageTimerLogic(_deathTimerRequestedHeat, _timeElapsedInFloatForHeat, _heatTimer);
         _timeElapsedInFloatForEnergy = ManageTimerLogic(_deathTimerRequestedEnegry, _timeElapsedInFloatForEnergy, _energyTimer);
         _timeElapsedInFloatForHunger = ManageTimerLogic(_deathTimerRequestedHunger, _timeElapsedInFloatForHunger, _hungerTimer);

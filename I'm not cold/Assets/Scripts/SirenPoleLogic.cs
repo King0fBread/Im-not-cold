@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class SirenPoleLogic : MonoBehaviour
 {
-    public bool activatedInCorrectTime { get; set; }
-    public bool sirenPoleWorking { get; set; }
+    [Header("References")]
     [SerializeField] private GameObject _survivalEndscreen;
     [SerializeField] private AudioSource _standaloneEndscreenAudioSource;
+    [SerializeField] private DyingAndResettingLogic _dyingAndResettingLogic;
     private bool _startedCountdown = false;
     private bool _enoughFuelForSiren = true;
+    public bool activatedInCorrectTime { get; set; }
+    public bool sirenPoleWorking { get; set; }
     public void ActivateAlarm()
     {
         //alarm sounds
@@ -44,6 +46,8 @@ public class SirenPoleLogic : MonoBehaviour
     }
     private IEnumerator CountdownBeforeEndcreenCoroutine()
     {
+        _dyingAndResettingLogic.canObserveAndExecuteDying = false;
+
         yield return new WaitForSeconds(10f);
         _standaloneEndscreenAudioSource.Play();
         yield return new WaitForSeconds(5f);
