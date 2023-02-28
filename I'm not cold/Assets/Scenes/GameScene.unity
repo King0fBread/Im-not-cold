@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 73675740}
   - component: {fileID: 73675741}
   m_Layer: 0
-  m_Name: Silouettes
+  m_Name: Silhouettes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47097ccc50746a947a4843ba06943058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _silouettes:
+  _silhouettes:
   - {fileID: 21751157}
   - {fileID: 2051983769}
   - {fileID: 503945926}
@@ -377,8 +377,8 @@ MonoBehaviour:
   - {fileID: 993835129}
   - {fileID: 214801044}
   - {fileID: 1373431225}
-  _alphaIncreasingRate: 0.1
-  _alphaDecreasingRate: 0.05
+  _alphaIncreasingRate: 0.005
+  _silhouettesColorWithZeroAlpha: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &78625826
 GameObject:
   m_ObjectHideFlags: 0
@@ -6657,7 +6657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1444b363497482e4cad8d1c51b748466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sillouetteAppearingLogic: {fileID: 73675741}
+  _silhouettesAppearingLogic: {fileID: 73675741}
 --- !u!65 &234070063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6669,8 +6669,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 28.679184, y: 4.802754, z: 28.11409}
-  m_Center: {x: -0.28554535, y: 1.901377, z: 4.060478}
+  m_Size: {x: 28.679184, y: 6.2508163, z: 28.11409}
+  m_Center: {x: -0.28554535, y: 1.1773456, z: 4.060478}
 --- !u!4 &234070064
 Transform:
   m_ObjectHideFlags: 0
@@ -7364,7 +7364,7 @@ MonoBehaviour:
   _postProcessingManager: {fileID: 441305268}
   _sliderEventsManager: {fileID: 185673530}
   _sirenPoleLogic: {fileID: 919132149331598319}
-  _sillouetteAppearingLogic: {fileID: 73675741}
+  _silhouettesAppearingLogic: {fileID: 73675741}
   _deathScreen: {fileID: 2026597986}
   _heatTimer: {fileID: 1898288731}
   _energyTimer: {fileID: 994704102}

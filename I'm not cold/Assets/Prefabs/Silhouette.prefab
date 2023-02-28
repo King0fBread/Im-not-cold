@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2915374124085921148}
   - component: {fileID: 2915374124085921151}
   m_Layer: 0
-  m_Name: Silouette
+  m_Name: Silhouette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
