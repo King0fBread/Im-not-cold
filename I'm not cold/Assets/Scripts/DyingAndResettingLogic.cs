@@ -10,6 +10,7 @@ public class DyingAndResettingLogic : MonoBehaviour
     [SerializeField] private PostProcessingManager _postProcessingManager;
     [SerializeField] private SlidersEventsManager _sliderEventsManager;
     [SerializeField] private SirenPoleLogic _sirenPoleLogic;
+    [SerializeField] private SillouetteAppearingLogic _sillouetteAppearingLogic;
     [SerializeField] private GameObject _deathScreen;
     [Header("Dying Logic")]
     [SerializeField] private TextMeshProUGUI _heatTimer;
@@ -61,12 +62,14 @@ public class DyingAndResettingLogic : MonoBehaviour
         if (isTimerRequested)
         {
             _postProcessingManager.playerCloseToDying = true;
+            _sillouetteAppearingLogic.displaySilouettes = true;
             return DecreaseTimer(elapsedTime, timerText);
         }
         else if(!isTimerRequested && elapsedTime != _deathCountdownDefaultTimerValue)
         {
             timerText.text = "";
             _postProcessingManager.playerCloseToDying = false;
+            _sillouetteAppearingLogic.displaySilouettes = false;
             return _deathCountdownDefaultTimerValue;
         }
         return _deathCountdownDefaultTimerValue;
@@ -127,7 +130,7 @@ public class DyingAndResettingLogic : MonoBehaviour
         //avoiding accidental winning if dead
         _sirenPoleLogic.CancelEndscreenCountdown();
 
-        //initiating dying endscreen
+        //initiating dying actions sequence
         _deathScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         SoundsManager.instance.SilenceAllSounds();
