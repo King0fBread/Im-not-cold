@@ -5,11 +5,13 @@ using UnityEngine;
 public class JumpingGroundCheck : MonoBehaviour
 {
     [SerializeField] private List<Collider> _collidersToIgnore;
+    private GroundTypeCheck _groundTypeCheck;
     private PlayerMovement _playerMovement;
 
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _groundTypeCheck = GetComponent<GroundTypeCheck>();
     }
     //private void OnCollisionExit(Collision collision)
     //{
@@ -39,5 +41,15 @@ public class JumpingGroundCheck : MonoBehaviour
             return;
 
         _playerMovement.isGrounded = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_collidersToIgnore.Contains(other))
+            return;
+
+        if (_groundTypeCheck.playerWalkingOnWood)
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerJumpingWood);
+        else
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerJumpingSnow);
     }
 }

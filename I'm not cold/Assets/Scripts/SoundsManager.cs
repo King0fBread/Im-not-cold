@@ -53,6 +53,7 @@ public class SoundsManager : MonoBehaviour
         HelicopterEvacuation,
         DoorOpening,
         DoorClosing,
+        PlayerJumpingInitial,
     }
     public void PlaySound(Sounds sound)
     {

@@ -31,6 +31,8 @@ public class DyingAndResettingLogic : MonoBehaviour
     public bool canObserveAndExecuteDying { get; set; }
     private void Awake()
     {
+        canObserveAndExecuteDying = true;
+
         _heatTimer.text = "";
         _energyTimer.text = "";
         _hungerTimer.text = "";

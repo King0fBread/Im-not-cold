@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             _playerRigidbody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerJumpingInitial);
         }
     }
     private void Move()
