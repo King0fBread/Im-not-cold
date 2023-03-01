@@ -96,7 +96,7 @@ public class SurvivalStatesManager : MonoBehaviour
         if (isPlayerIdle)
         {
             _energyValue += _energyPassiveIncreasingRate * Time.deltaTime;
-            CapSurvivalValueAtMax(_energyValue);
+            _energyValue = CapSurvivalValueAtMax(_energyValue);
         }
         //Walking
         if (!isPlayerRunning)

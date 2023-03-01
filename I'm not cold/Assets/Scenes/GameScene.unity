@@ -19392,20 +19392,20 @@ MonoBehaviour:
   _energySlider: {fileID: 969419155}
   _hungerSlider: {fileID: 827318865}
   _mentalSlider: {fileID: 746008310}
-  _heatPassiveDecreasingInsideRate: 0.015
-  _heatPassiveDecreasingOutsideRate: 0.04
+  _heatPassiveDecreasingInsideRate: 0.01
+  _heatPassiveDecreasingOutsideRate: 0.025
   _heatPassiveIncreasingRate: 0.1
   _energyPassiveDecreasingWalkingRate: 0.015
   _enegryPassiveDecreasingRunningRate: 0.03
   _energyInstantDecreasingJumpingRate: 0.06
   _energyInstantIncreasingRate: 1
-  _energyPassiveIncreasingRate: 0.04
-  _hungerPassiveDecreasingRate: 0.02
-  _hungerInstantIncreasingEatingRate: 0.9
+  _energyPassiveIncreasingRate: 0.08
+  _hungerPassiveDecreasingRate: 0.005
+  _hungerInstantIncreasingEatingRate: 0.8
   _hungerInstanctIncreasingSnackingRate: 0.1
-  _mentalPassiveDecreasingRate: 0.015
+  _mentalPassiveDecreasingRate: 0.008
   _mentalInstantIncreasingEatingRate: 0.3
-  _mentalInstantIncreasingSnackingRate: 0.8
+  _mentalInstantIncreasingSnackingRate: 0.9
 --- !u!4 &1656233745
 Transform:
   m_ObjectHideFlags: 0
@@ -33824,6 +33824,7 @@ MonoBehaviour:
   _sirenPoleLogic: {fileID: 919132149331598319}
   _hourArrow: {fileID: 5598704114366129720}
   _minuteArrow: {fileID: 3577273783253173893}
+  _currentDayTime: 0
 --- !u!1 &919132149331598318
 GameObject:
   m_ObjectHideFlags: 0
