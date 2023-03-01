@@ -33,7 +33,7 @@ public class SirenPoleLogic : MonoBehaviour
     }
     private void Update()
     {
-        if (sirenPoleWorking && _enoughFuelForSiren)
+        if (sirenPoleWorking && activatedInCorrectTime)
         {
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.GeneratorWorking);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.SirenWorking);
@@ -41,6 +41,16 @@ public class SirenPoleLogic : MonoBehaviour
             {
                 _startedCountdown = true;
                 StartCoroutine(CountdownBeforeEndcreenCoroutine());
+            }
+        }
+        else if(sirenPoleWorking && !activatedInCorrectTime && _enoughFuelForSiren)
+        {
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.GeneratorWorking);
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.SirenWorking);
+            if (!_startedCountdown)
+            {
+                _startedCountdown = true;
+                StartCoroutine(CountdownBeforeLosingCoroutine());
             }
         }
     }
@@ -59,5 +69,6 @@ public class SirenPoleLogic : MonoBehaviour
         _enoughFuelForSiren = false;
         SoundsManager.instance.StopSound(SoundsManager.Sounds.GeneratorWorking);
         SoundsManager.instance.StopSound(SoundsManager.Sounds.SirenWorking);
+        
     }
 }
