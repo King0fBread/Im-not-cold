@@ -8,25 +8,11 @@ public class SirenPoleLogic : MonoBehaviour
     [SerializeField] private GameObject _survivalEndscreen;
     [SerializeField] private AudioSource _standaloneEndscreenAudioSource;
     [SerializeField] private DyingAndResettingLogic _dyingAndResettingLogic;
+    [SerializeField] private Animator _generatorAnimator;
     private bool _startedCountdown = false;
     private bool _enoughFuelForSiren = true;
     public bool activatedInCorrectTime { get; set; }
     public bool sirenPoleWorking { get; set; }
-    public void ActivateAlarm()
-    {
-        //alarm sounds
-        if (activatedInCorrectTime)
-        {
-            //helicopter closing in
-            //coroutine for waiting
-            
-        }
-        else
-        {
-            //lose
-            print("losing");
-        }
-    }
     public void CancelEndscreenCountdown()
     {
         StopCoroutine(CountdownBeforeEndcreenCoroutine());
@@ -67,8 +53,7 @@ public class SirenPoleLogic : MonoBehaviour
     {
         yield return new WaitForSeconds(15f);
         _enoughFuelForSiren = false;
-        SoundsManager.instance.StopSound(SoundsManager.Sounds.GeneratorWorking);
-        SoundsManager.instance.StopSound(SoundsManager.Sounds.SirenWorking);
-        
+        _generatorAnimator.Play("DefaultState");
+        //dying (delay? absence of action? a notification? a slower animation for dying?)
     }
 }
