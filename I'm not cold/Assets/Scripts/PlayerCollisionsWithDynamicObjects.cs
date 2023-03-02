@@ -11,10 +11,15 @@ public class PlayerCollisionsWithDynamicObjects : MonoBehaviour
             SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerTouchedWood);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerTouchedWood);
         }
-        else if (collision.gameObject.GetComponent<MetallicObject>())
+        if (collision.gameObject.GetComponent<MetallicObject>())
         {
             SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerTouchedMetal);
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerTouchedMetal);
+        }
+        if (collision.gameObject.GetComponent<WoodenPlanksObject>())
+        {
+            SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerTouchedPlanks);
+            SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerTouchedPlanks);
         }
     }
 }
