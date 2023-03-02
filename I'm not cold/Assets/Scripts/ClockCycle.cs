@@ -9,16 +9,18 @@ public class ClockCycle : MonoBehaviour
     [Header("Clock logic")]
     [SerializeField] private Transform _hourArrow;
     [SerializeField] private Transform _minuteArrow;
-    private const float REAL_SECONDS_TO_GAME_DAY_RATIO = 300f;
+    //7 minutes in seconds
+    private const float REAL_SECONDS_TO_GAME_DAY_RATIO = 420f;
+    //basic rotation parameters
     private float _possibleRotationInDegreesPerDay = 360f;
     private float _possibleHoursPerDay = 12f;
-
-    [SerializeField] private float _currentDayTime;
+    //from 0 to 1 the clock makes a full circle back to 12am
+    private float _currentDayTime;
     private float _dayNormalized;
     private void Awake()
     {
-        //sets the initial arrows rotations
-        _currentDayTime = 159f / REAL_SECONDS_TO_GAME_DAY_RATIO;
+        //sets the initial arrows rotations, here - to 0.53
+        _currentDayTime = 222.6f / REAL_SECONDS_TO_GAME_DAY_RATIO;
     }
     private void Update()
     {
