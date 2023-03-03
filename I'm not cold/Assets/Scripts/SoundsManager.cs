@@ -55,6 +55,7 @@ public class SoundsManager : MonoBehaviour
         DoorClosing,
         PlayerJumpingInitial,
         PlayerTouchedPlanks,
+        EnvironmentWind,
     }
     public void PlaySound(Sounds sound)
     {
