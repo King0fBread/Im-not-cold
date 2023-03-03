@@ -5,12 +5,19 @@ using UnityEngine.UI;
 
 public class FurnaceLogic : MonoBehaviour
 {
+    [Header("Furnace logic")]
     [SerializeField] private GameObject _selectionIcon;
     [SerializeField] private PlayerPickAndDropItems _playerPickAndDropItems;
     [SerializeField] private ParticleSystem _chimneySmokeParticles;
     [SerializeField] private Slider _heatSlider;
     [SerializeField] private float _passiveDecreasingValue;
     [SerializeField] private float _passiveRapidDecreasingValue;
+    [Header("Furnace light emitter")]
+    [SerializeField] private Light _workingFurnaceLight;
+    [SerializeField] private float _maxIntensity;
+    [SerializeField] private float _minIntensity;
+    [SerializeField] private float _lightingChangeRate;
+
     public bool isFrontDoorOpen { get; set; }
     private BurnableItem _currentItem;
     private float _currentHeatValue = 1f;
@@ -27,6 +34,7 @@ public class FurnaceLogic : MonoBehaviour
         if (_currentHeatValue > 0)
         {
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.FurnaceBurning);
+            EmitLight();
             if (isFrontDoorOpen)
             {
                 _currentHeatValue -= _passiveRapidDecreasingValue * Time.deltaTime;
@@ -39,7 +47,22 @@ public class FurnaceLogic : MonoBehaviour
         else if(_currentHeatValue <= 0)
         {
             SoundsManager.instance.StopSound(SoundsManager.Sounds.FurnaceBurning);
+            StopLight();
             _currentHeatValue = 0;
+        }
+    }
+    private void EmitLight()
+    {
+        if(_workingFurnaceLight.intensity < _maxIntensity)
+        {
+            _workingFurnaceLight.intensity += _lightingChangeRate;
+        }
+    }
+    private void StopLight()
+    {
+        if(_workingFurnaceLight.intensity > _minIntensity)
+        {
+            _workingFurnaceLight.intensity -= _lightingChangeRate;
         }
     }
     private void ControlParticles()
