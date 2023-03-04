@@ -48,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext context)
     {
+        if (!canMove)
+            return;
+
         if (isGrounded)
         {
             _playerRigidbody.AddForce(Vector3.up * _jumpStrength, ForceMode.Impulse);
