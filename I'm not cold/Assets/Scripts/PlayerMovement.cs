@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInputActions playerInputActions;
     private GroundTypeCheck _groundTypeCheck;
     public bool isGrounded { get; set; }
-    public bool canMove = true;
+    public bool canMove { get; set; }
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
