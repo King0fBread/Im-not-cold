@@ -13,4 +13,8 @@ public class ScenesLoaderForButtons : MonoBehaviour
     {
         StaticScenesManager.LoadRequestedScene(StaticScenesManager.Scenes.MenuScene);
     }
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 }

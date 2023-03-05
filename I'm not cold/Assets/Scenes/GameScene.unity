@@ -19301,6 +19301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settingsObject: {fileID: 302979610}
+  _playerMovement: {fileID: 558040692}
 --- !u!1001 &1451583567
 PrefabInstance:
   m_ObjectHideFlags: 0
