@@ -63,7 +63,12 @@ public class PlayerMovement : MonoBehaviour
         _inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
         _moveDirection = _orientationObjectTransform.forward * _inputVector.y + _orientationObjectTransform.right * _inputVector.x;
         SendMovementInfoToEnergyCounter();
-        if(_inputVector == Vector2.zero)
+        PlayAppropriateMovementSounds();
+    }
+
+    private void PlayAppropriateMovementSounds()
+    {
+        if (_inputVector == Vector2.zero)
         {
             StopAllWalkingSounds();
             StopAllRunningSounds();
@@ -80,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
             PlayCorrectWalkingSound();
         }
     }
+
     private void SetSpeedToWalking()
     {
         _playerRigidbody.AddForce(_moveDirection.normalized * _walkingSpeed * Time.deltaTime, ForceMode.Force);

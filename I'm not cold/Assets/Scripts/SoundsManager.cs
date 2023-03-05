@@ -64,6 +64,7 @@ public class SoundsManager : MonoBehaviour
         {
             _source.PlayOneShot(_clip);
         }
+        print("PLAYED " + sound);
     }
     public void StopSound(Sounds sound)
     {

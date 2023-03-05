@@ -44,7 +44,7 @@ public class JumpingGroundCheck : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (_collidersToIgnore.Contains(other))
+        if (_collidersToIgnore.Contains(other) || !_playerMovement.canMove)
             return;
 
         if (_groundTypeCheck.playerWalkingOnWood)
