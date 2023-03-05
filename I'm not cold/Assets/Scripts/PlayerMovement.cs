@@ -40,11 +40,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (canMove)
-        {
-            Move();
-            RotateCamera();
-        }
+        if (!canMove)
+            return;
+
+        Move();
+        RotateCamera();
     }
     private void Jump(InputAction.CallbackContext context)
     {

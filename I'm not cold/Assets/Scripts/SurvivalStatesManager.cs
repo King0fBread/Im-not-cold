@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SurvivalStatesManager : MonoBehaviour
 {
+    public bool canChangeSurvivalStates { get; set; }
     [Header("Sliders")]
     [SerializeField] private Slider _heatSlider;
     [SerializeField] private Slider _energySlider;
@@ -57,6 +58,9 @@ public class SurvivalStatesManager : MonoBehaviour
     }
     private void Update()
     {
+        if (!canChangeSurvivalStates)
+            return;
+
         ControlHunger();
         ControlMental();
         ControlHeat();

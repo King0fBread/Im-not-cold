@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StartingCutsceneRuntimeEvents : MonoBehaviour
 {
+    [SerializeField] private SurvivalStatesManager _survivalStatesManager;
     private PlayerMovement _playerMovement;
     private Animator _animator;
     private void Awake()
@@ -14,10 +15,12 @@ public class StartingCutsceneRuntimeEvents : MonoBehaviour
     public void DisableMovement()
     {
         _playerMovement.canMove = false;
+        _survivalStatesManager.canChangeSurvivalStates = false;
     }
     public void EnableMovement()
     {
         _playerMovement.canMove = true;
         _animator.enabled = false;
+        _survivalStatesManager.canChangeSurvivalStates = true;
     }
 }
