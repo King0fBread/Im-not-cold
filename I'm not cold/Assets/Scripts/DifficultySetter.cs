@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DifficultySetter : MonoBehaviour
 {
+    [SerializeField] private GameObject _casualDifficultyExtraObjects;
     private int _difficulty;
     private void Awake()
     {
         _difficulty = DifficultySelector.difficultyIndex;
-        print(_difficulty);
+        if (_difficulty == 0)
+            _casualDifficultyExtraObjects.SetActive(true);
     }
 }
