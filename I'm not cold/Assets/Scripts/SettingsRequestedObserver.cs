@@ -17,6 +17,9 @@ public class SettingsRequestedObserver : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             _settingsObject.SetActive(!_settingsObject.activeSelf);
+            //Done to avoid movement sounds playing while in settings menu
+            _playerMovement.StopAllWalkingSounds();
+            _playerMovement.StopAllRunningSounds();
         }
     }
 }

@@ -158,12 +158,12 @@ public class PlayerMovement : MonoBehaviour
             SoundsManager.instance.PlaySound(SoundsManager.Sounds.PlayerRunningSnow);
         }
     }
-    private void StopAllWalkingSounds()
+    public void StopAllWalkingSounds()
     {
         SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingWood);
         SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerWalkingSnow);
     }
-    private void StopAllRunningSounds()
+    public void StopAllRunningSounds()
     {
         SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerRunningWood);
         SoundsManager.instance.StopSound(SoundsManager.Sounds.PlayerRunningSnow);
